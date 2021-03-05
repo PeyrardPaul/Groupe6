@@ -13,7 +13,7 @@ public class map {
 		for (int i = 0; i < m; i++) {
 			for (int j = 0; j < n; j++) {
 				a[i][j] ="*"; // System.out.print(String.format("Entrez a[%d][%d] : ", i, j));
-				// sc.nextInt();
+				// sc.nextInt() ;
 			}
 		}
 		for (int i = 0; i < a.length; i++) {
