@@ -9,11 +9,11 @@ public class map {
 		System.out.print("Saisir le nombre de colonnes dans la matrice: ");
 		int n = sc.nextInt();
 		// déclarer la matrice
-		int[][] a = new int[m][n];
+		String[][] a = new String[m][n];
 		for (int i = 0; i < m; i++) {
 			for (int j = 0; j < n; j++) {
-				System.out.print(String.format("Entrez a[%d][%d] : ", i, j));
-				a[i][j] = sc.nextInt();
+				a[i][j] ="*"; // System.out.print(String.format("Entrez a[%d][%d] : ", i, j));
+				// sc.nextInt();
 			}
 		}
 		for (int i = 0; i < a.length; i++) {
