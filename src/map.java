@@ -2,28 +2,47 @@ import java.util.Scanner;
 
 public class map {
 	public static void main(String[] args) {
-		System.out.print("Saisir le nombre de lignes dans la matrice: ");
-		Scanner sc = new Scanner(System.in);
-		int m = sc.nextInt();
-
-		System.out.print("Saisir le nombre de colonnes dans la matrice: ");
-		int n = sc.nextInt();
 		// déclarer la matrice
-		String[][] a = new String[m][n];
-		for (int i = 0; i < m; i++) {
-			for (int j = 0; j < n; j++) {
-				a[i][j] ="X"; // System.out.print(String.format("Entrez a[%d][%d] : ", i, j));
-				// sc.nextInt() ;
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Bienvenue dans DONJONS  ET DRAGONS");
+		System.out.println("Pour commencer la partie tapez: 'aventure'");
+		int m = 20;
+		int n = 20;
+		if (sc.next().equals("aventure")) {
+			String[][] a = new String[m][n];
+			for (int i = 0; i < m; i++) {
+				for (int j = 0; j < n; j++) {
+					a[i][j] = "X"; // System.out.print(String.format("Entrez a[%d][%d] : ", i, j));
+					// sc.nextInt() ;
+				}
 			}
-		}
-		for (int i = 0; i < a.length; i++) {
-			for (int j = 0; j < a[0].length; j++) {
-				System.out.print(a[i][j] + "\t");
+			for (int i = 0; i < a.length; i++) {
+				for (int j = 0; j < a[0].length; j++) {
+					System.out.print(a[i][j]);
+				}
+				System.out.println();
 			}
-			System.out.println();
+			// fermez scanner
+		} else {
+			System.err.println("Tu as droit à une deuxième tentative...");
+			if (sc.next().equals("aventure")) {
+				String[][] a = new String[m][n];
+				for (int i = 0; i < m; i++) {
+					for (int j = 0; j < n; j++) {
+						a[i][j] = "X"; // System.out.print(String.format("Entrez a[%d][%d] : ", i, j));
+						// sc.nextInt() ;
+					}
+				}
+				for (int i = 0; i < a.length; i++) {
+					for (int j = 0; j < a[0].length; j++) {
+						System.out.print(a[i][j]);
+					}
+					System.out.println();
+				}
+			} else {
+				System.err.println("ok j'ai compris tu veux pas jouer..");
+			}
+			sc.close();
 		}
-
-		// fermez scanner
-		sc.close();
 	}
 }
