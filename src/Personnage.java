@@ -46,13 +46,13 @@ public class Personnage {
 	public String potion() {
 		System.out.println("Vous avez trouvé une potion : +2 PV");
 		pv = pv + 2;
-		return "Vous avez donc maintenant " + pv + "PV";
+		return getName()+" a maintenant " + pv + "PV";
 	}
 
 	public String piege() {
 		System.out.println("Vous êtes tombés sur un piège : -3 PV");
 		pv = pv - 3;
-		return "Vous avez donc maintenant " + pv + "PV";
+		return getName()+" a maintenant " + pv + "PV";
 	}
 
 	public static void main(String[] args) throws PersonnageException {

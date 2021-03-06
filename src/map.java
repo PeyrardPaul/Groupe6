@@ -6,8 +6,8 @@ public class map {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Bienvenue dans DONJONS  ET DRAGONS");
 		System.out.println("Pour commencer la partie tapez: 'aventure'");
-		int m = 20;
-		int n = 20;
+		int m = 15;
+		int n = 15;
 		if (sc.next().equals("aventure")) {
 			String[][] a = new String[m][n];
 			for (int i = 0; i < m; i++) {
@@ -40,7 +40,7 @@ public class map {
 					System.out.println();
 				}
 			} else {
-				System.err.println("ok j'ai compris tu veux pas jouer..");
+				System.err.println("Ok j'ai compris tu veux pas jouer..");
 			}
 			sc.close();
 		}
