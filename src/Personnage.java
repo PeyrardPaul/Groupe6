@@ -14,7 +14,7 @@ public class Personnage {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Veuillez entrer votre nom : ");
 		name = sc.next();
-		System.out.println("Vous vous appelez " + name + " et vous commencez avec " + pv + " PV");
+		System.out.println("Bonjour "+name+", voici vos caractéristiques :\nNombre de PV: "+pv+"\nNombre de potion: "+potion+"\n----------------");
 	}
 
 	//getter et setteur
