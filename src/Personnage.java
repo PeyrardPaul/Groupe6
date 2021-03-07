@@ -1,66 +1,80 @@
+import java.awt.Color;
+import java.util.Scanner;
+
+import javax.swing.JLabel;
 
 public class Personnage {
-	private String name = "";
-	private int pv = 10;
-	private final int numerojoueur;
+	//Attributs
+	private int pv;
+	private int potion;
+	private String name;
 	public static int nbjoueur = 0;
 
-	public Personnage(String name, int pv) throws PersonnageException {
-		setName(name);
-		setPv(pv);
-		numerojoueur = ++nbjoueur;
+	//Constructeur
+	public Personnage() throws PersonnageException {
+		pv = 20;
+		potion = 1;
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Veuillez entrer votre nom : ");
+		name = sc.next();
+		System.out.println("Vous vous appelez " + name + " et vous commencez avec " + pv + " PV");
 	}
 
-	public int getNumerojoueur() {
-		return numerojoueur;
-	}
-
+	//getter et setteur
 	public String getName() {
-		if (name == "")
-			name = "Player" + String.valueOf(getNumerojoueur());
 		return name;
 	}
 
-	public void setName(String name) throws PersonnageException {
-		if (name == null)
-			throw new PersonnageException("Attention, vous n'avez pas entrer votre nom");
-		this.name = name;
+	public void setName(String nom) throws PersonnageException {
+		name = nom;
 	}
 
 	public int getPv() {
-		if (pv != 10)
-			pv = 10;
 		return pv;
 	}
 
-	public void setPv(int pv) throws PersonnageException {
-		if (getPv() != 10)
-			throw new PersonnageException("Attention, vous n'avez pas autant de vie qu'il ne le faut");
-		this.pv = pv;
+	public void setPv(int life) throws PersonnageException {
+		pv = life;
 	}
 
-	public String toString() {
-		return "Vous vous appelez " + getName() + " et vous commencez avec " + getPv() + " de vie";
-	}
-
+	//methodes
+	
 	public String potion() {
-		System.out.println("Vous avez trouvé une potion : +2 PV");
-		pv = pv + 2;
-		return getName()+" a maintenant " + pv + "PV";
+		if (potion>0 && pv <20) {
+			if (pv>=17) {
+				System.out.println("Vous utilisez une potion : +"+(20-pv)+" PV");
+				pv += (20-pv);
+				return "Vous avez maintenant " + pv + "PV";
+			}else {
+				potion -= 1;
+				System.out.println("Vous utilisez une potion : +4 PV");
+				pv += 4;
+				return "Vous avez maintenant " + pv + "PV";
+			}
+		}else if (pv == 20) {
+			return "Vous avec déjà le maximum de PV";
+		}else {
+			return "Vous n'avez pas de potion...";
+		}	
 	}
 
 	public String piege() {
-		System.out.println("Vous êtes tombés sur un piège : -3 PV");
-		pv = pv - 3;
-		return getName()+" a maintenant " + pv + "PV";
+		if (pv>3) {
+			System.out.println("Vous êtes tombés sur un piège : -3 PV");
+			pv = pv - 3;
+			return "Il vous reste " + pv + "PV";
+		}else {
+			return "VOUS ETES MORT !!!";
+		}
 	}
-
+	
+	public String toString() {
+		return "Vous vous appelez " + getName() + " et vous commencez avec " + getPv() + " de vie";
+	}
+	
 	public static void main(String[] args) throws PersonnageException {
-		Personnage un = new Personnage("Pierre", 10);
-		System.out.println(un);
-		Personnage deux = new Personnage("Marie", 10);
-		System.out.println(deux);
-		System.out.println(deux.potion());
-		System.out.println(deux.piege());
+	Personnage un = new Personnage();
+	System.out.println(un.piege());
+	System.out.println(un.potion());
 	}
 }
