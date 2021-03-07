@@ -1,7 +1,4 @@
-import java.awt.Color;
 import java.util.Scanner;
-
-import javax.swing.JLabel;
 
 public class Personnage {
 	//Attributs
@@ -11,7 +8,7 @@ public class Personnage {
 	public static int nbjoueur = 0;
 
 	//Constructeur
-	public Personnage() throws PersonnageException {
+	public Personnage() {
 		pv = 20;
 		potion = 1;
 		Scanner sc = new Scanner(System.in);
@@ -25,7 +22,7 @@ public class Personnage {
 		return name;
 	}
 
-	public void setName(String nom) throws PersonnageException {
+	public void setName(String nom){
 		name = nom;
 	}
 
@@ -33,7 +30,7 @@ public class Personnage {
 		return pv;
 	}
 
-	public void setPv(int life) throws PersonnageException {
+	public void setPv(int life){
 		pv = life;
 	}
 
@@ -66,15 +63,5 @@ public class Personnage {
 		}else {
 			return "VOUS ETES MORT !!!";
 		}
-	}
-	
-	public String toString() {
-		return "Vous vous appelez " + getName() + " et vous commencez avec " + getPv() + " de vie";
-	}
-	
-	public static void main(String[] args) throws PersonnageException {
-	Personnage un = new Personnage();
-	System.out.println(un.piege());
-	System.out.println(un.potion());
 	}
 }
