@@ -36,6 +36,10 @@ public class Personnage {
 
 	//methodes
 	
+	public String toString() {
+		return "Bonjour "+name+", voici vos caractéristiques :\nNombre de PV: "+pv+"\nNombre de potion: "+potion+"\n----------------";
+	}
+	
 	public String potion() {
 		if (potion>0 && pv <20) {
 			if (pv>=17) {
