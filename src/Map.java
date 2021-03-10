@@ -6,7 +6,7 @@ public class Map {
 	private char[][] map;
 	Scanner sc = new Scanner(System.in);
 
-	public Map() { // Nous nous sommes aidé de cette vidéo--> https://youtu.be/QVXM9YeO7rw
+	public Map() { // Nous nous sommes aidï¿½ de cette vidï¿½o--> https://youtu.be/QVXM9YeO7rw
 		System.out.println("Informations :\nMonstre = M\nMur = #\nPotion = +\nPiege = T\n\nVoici la carte ---->");
 		ligne = 15;
 		colonne = 15;
@@ -43,7 +43,7 @@ public class Map {
 			}
 		}
 	}
-	
+
 	public void saisieClavier(Personnage perso) {
 		System.out.println("Dans quelle direction voulez vous aller?");
 		System.out.println("z = vers le haut");
@@ -55,13 +55,14 @@ public class Map {
 			System.out.println("haut");
 		} else if (a.equals("q")) {
 			System.out.println("gauche");
-		}else if (a.equals("s")) {
+		} else if (a.equals("s")) {
 			System.out.println("bas");
-		}else if (a.equals("d")) {
+		} else if (a.equals("d")) {
 			System.out.println("droite");
-		}else {
+		} else {
 			System.out.println("Vous n'avez pas saisi une bonne lettre");
-		}sc.close();
+		}
+		sc.close();
 	}
 	/*
 	 * public void toutLesObjets() { int i = 1; Random rand = new Random(); int min
