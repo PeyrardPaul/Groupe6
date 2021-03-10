@@ -5,15 +5,14 @@ public class Personnage {
 	private int pv;
 	private int potion;
 	private String name;
-	public static int nbjoueur = 0;
+	Scanner scp = new Scanner(System.in);
 
 	//Constructeur
 	public Personnage() {
 		pv = 20;
 		potion = 1;
-		Scanner sc = new Scanner(System.in);
 		System.out.println("Veuillez entrer votre nom : ");
-		name = sc.next();
+		name = scp.next();
 		System.out.println("Bonjour "+name+", voici vos caractéristiques :\nNombre de PV: "+pv+"\nNombre de potion: "+potion+"\n----------------");
 	}
 
@@ -33,39 +32,48 @@ public class Personnage {
 	public void setPv(int life){
 		pv = life;
 	}
+	
+	public int getPotion() {
+		return potion;
+	}
 
+	public void setPotion(int po) {
+		System.out.println("Vous avez trouvé "+po+" potion(s) !");
+		potion +=po;
+	}
 	//methodes
 	
 	public String toString() {
 		return "Bonjour "+name+", voici vos caractéristiques :\nNombre de PV: "+pv+"\nNombre de potion: "+potion+"\n----------------";
 	}
 	
-	public String potion() {
+	public void potion() {
 		if (potion>0 && pv <20) {
 			if (pv>=17) {
+				potion -= 1;
 				System.out.println("Vous utilisez une potion : +"+(20-pv)+" PV");
 				pv += (20-pv);
-				return "Vous avez maintenant " + pv + "PV";
+				System.out.println("Vous avez maintenant " + pv + "PV");
 			}else {
 				potion -= 1;
 				System.out.println("Vous utilisez une potion : +4 PV");
 				pv += 4;
-				return "Vous avez maintenant " + pv + "PV";
+				System.out.println("Vous avez maintenant " + pv + "PV");
 			}
-		}else if (pv == 20) {
-			return "Vous avec déjà le maximum de PV";
-		}else {
-			return "Vous n'avez pas de potion...";
+		} else if (pv == 20) {
+			System.out.println("Vous avec déjà le maximum de PV");
+		} else {
+			System.out.println( "Vous n'avez pas de potion...");
 		}	
 	}
 
-	public String piege() {
+	public void piege() {
 		if (pv>3) {
 			System.out.println("Vous êtes tombés sur un piège : -3 PV");
 			pv = pv - 3;
-			return "Il vous reste " + pv + "PV";
+			System.out.println("Il vous reste " + pv + "PV");
 		}else {
-			return "VOUS ETES MORT !!!";
+			System.out.println("VOUS ETES MORT !!!");
 		}
 	}
 }

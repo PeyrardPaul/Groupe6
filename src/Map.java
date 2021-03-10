@@ -50,6 +50,7 @@ public class Map {
 		System.out.println("s = vers le bas");
 		System.out.println("q = vers la gauche");
 		System.out.println("d = vers la droite.");
+		System.out.println("e = prendre une potion");
 		String a = sc.next();
 		if (a.equals("z")) {
 			System.out.println("haut");
@@ -59,10 +60,11 @@ public class Map {
 			System.out.println("bas");
 		} else if (a.equals("d")) {
 			System.out.println("droite");
+		} else if(a.equals("e")) {
+			perso.potion();		
 		} else {
 			System.out.println("Vous n'avez pas saisi une bonne lettre");
 		}
-		sc.close();
 	}
 	/*
 	 * public void toutLesObjets() { int i = 1; Random rand = new Random(); int min
