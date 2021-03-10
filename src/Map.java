@@ -50,13 +50,14 @@ public class Map {
 		System.out.println("s = vers le bas");
 		System.out.println("q = vers la gauche");
 		System.out.println("d = vers la droite.");
-		if (sc.next() == "z") {
+		String a = sc.next();
+		if (a == "z") {
 			System.out.println("haut");
-		} else if (sc.next() == "q") {
+		} else if (a == "q") {
 			System.out.println("gauche");
-		}else if (sc.next() == "s") {
+		}else if (a == "s") {
 			System.out.println("bas");
-		}else if (sc.next() == "d") {
+		}else if (a == "d") {
 			System.out.println("droite");
 		}else {
 			System.out.println("Vous n'avez paas saisi une bonne lettre");
