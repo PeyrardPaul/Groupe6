@@ -60,7 +60,7 @@ public class Map {
 		}else if (a == "d") {
 			System.out.println("droite");
 		}else {
-			System.out.println("Vous n'avez paas saisi une bonne lettre");
+			System.out.println("Vous n'avez pas saisi une bonne lettre");
 		}sc.close();
 	}
 	/*
