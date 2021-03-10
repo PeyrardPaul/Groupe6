@@ -45,17 +45,18 @@ public class Map {
 	
 	public void saisieClavier(Personnage perso) {
 		Scanner sc = new Scanner(System.in);
-		System.out.println("Dans quelle direction voulez vous aller? (z = vers le haut, s = vers le bas, q = vers la gauche, d = vers la droite");
-		if (sc.next() == "z") {
+		System.out.println("Dans quelle direction voulez vous aller? (z = vers le haut, s = vers le bas, q = vers la gauche, d = vers la droite)");
+		String a = sc.next();
+		if (a == "z") {
 			System.out.println("haut");
-		} else if (sc.next() == "q") {
+		} else if (a == "q") {
 			System.out.println("gauche");
-		}else if (sc.next() == "s") {
+		}else if (a == "s") {
 			System.out.println("bas");
-		}else if (sc.next() == "d") {
+		}else if (a == "d") {
 			System.out.println("droite");
 		}else {
-			System.out.println("Vous n'avez paas saisi une bonne lettre");
+			System.out.println("Vous n'avez pas saisi une bonne lettre");
 		}sc.close();
 	}
 	/*
