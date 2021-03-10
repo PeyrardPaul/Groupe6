@@ -46,12 +46,16 @@ public class Map {
 	public void bouger(Personnage perso) {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Dans quelle direction voulez vous aller? (z = vers le haut, s = vers le bas, q = vers la gauche, d = vers la droite");
-		switch(sc.next()) {
-		case "z": System.out.println("haut");
-		case "q": System.out.println("gauche");
-		case "s": System.out.println("bas");
-		case "d": System.out.println("droite");
-		default: System.out.println("Vous n'avez paas saisi une bonne lettre");
+		if (sc.next() == "z") {
+			System.out.println("haut");
+		} else if (sc.next() == "q") {
+			System.out.println("gauche");
+		}else if (sc.next() == "s") {
+			System.out.println("bas");
+		}else if (sc.next() == "d") {
+			System.out.println("droite");
+		}else {
+			System.out.println("Vous n'avez paas saisi une bonne lettre");
 		}
 	}
 	/*
