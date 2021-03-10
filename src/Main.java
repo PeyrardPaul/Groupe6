@@ -6,6 +6,6 @@ public class Main {
 		map.objet(8,8,'P');
 		map.affichage();
 		Personnage perso = new Personnage();
-		map.bouger(perso);
+		map.saisieClavier(perso);
 	}
 }
