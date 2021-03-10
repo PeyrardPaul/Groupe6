@@ -4,6 +4,7 @@ public class Map {
 	private int ligne;
 	private int colonne;
 	private char[][] map;
+	Scanner sc = new Scanner(System.in);
 
 	public Map() { // Nous nous sommes aidé de cette vidéo--> https://youtu.be/QVXM9YeO7rw
 		System.out.println("Informations :\nMonstre = M\nMur = #\nPotion = +\nPiege = T\n\nVoici la carte ---->");
@@ -44,23 +45,22 @@ public class Map {
 	}
 	
 	public void saisieClavier(Personnage perso) {
-		Scanner sc = new Scanner(System.in);
 		System.out.println("Dans quelle direction voulez vous aller?");
 		System.out.println("z = vers le haut");
 		System.out.println("s = vers le bas");
 		System.out.println("q = vers la gauche");
 		System.out.println("d = vers la droite.");
 		String a = sc.next();
-		if (a == "z") {
+		if (a.equals("z")) {
 			System.out.println("haut");
-		} else if (a == "q") {
+		} else if (a.equals("q")) {
 			System.out.println("gauche");
-		}else if (a == "s") {
+		}else if (a.equals("s")) {
 			System.out.println("bas");
-		}else if (a == "d") {
+		}else if (a.equals("d")) {
 			System.out.println("droite");
 		}else {
-			System.out.println("Vous n'avez paas saisi une bonne lettre");
+			System.out.println("Vous n'avez pas saisi une bonne lettre");
 		}sc.close();
 	}
 	/*
