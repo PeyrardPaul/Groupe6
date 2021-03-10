@@ -1,4 +1,4 @@
-import java.util.Random;
+import java.util.Scanner;
 
 public class Map {
 	private int ligne;
@@ -42,7 +42,18 @@ public class Map {
 			}
 		}
 	}
-
+	
+	public void bouger(Personnage perso) {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Dans quelle direction voulez vous aller? (z = vers le haut, s = vers le bas, q = vers la gauche, d = vers la droite");
+		switch(sc.next()) {
+		case "z": System.out.println("haut");
+		case "q": System.out.println("gauche");
+		case "s": System.out.println("bas");
+		case "d": System.out.println("droite");
+		default: System.out.println("Vous n'avez paas saisi une bonne lettre");
+		}
+	}
 	/*
 	 * public void toutLesObjets() { int i = 1; Random rand = new Random(); int min
 	 * = 1; int max = 15; boolean y = true; while (i < 5) { while (y) { if
