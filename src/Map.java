@@ -4,8 +4,9 @@ public class Map {
 	private int ligne;
 	private int colonne;
 	private char[][] map;
+	Scanner sc = new Scanner(System.in);
 
-	public Map() { // Nous nous sommes aidï¿½ de cette vidï¿½o--> https://youtu.be/QVXM9YeO7rw
+	public Map() { // Nous nous sommes aidé de cette vidéo--> https://youtu.be/QVXM9YeO7rw
 		System.out.println("Informations :\nMonstre = M\nMur = #\nPotion = +\nPiege = T\n\nVoici la carte ---->");
 		ligne = 15;
 		colonne = 15;
@@ -37,29 +38,29 @@ public class Map {
 			if (map[a][b] == '-') {
 				map[a][b] = c;
 			} else {
-				System.out.println("Attention, l'emplacement est dï¿½ja pris ï¿½ la " + (a + 1) + "ï¿½me ligne et la "
-						+ (b + 1) + "ï¿½me colonne");
+				System.out.println("Attention, l'emplacement est déja pris à la " + (a + 1) + "ème ligne et la "
+						+ (b + 1) + "ème colonne");
 			}
 		}
 	}
 	
 	public void saisieClavier(Personnage perso) {
-		Scanner sc = new Scanner(System.in);
 		System.out.println("Dans quelle direction voulez vous aller?");
 		System.out.println("z = vers le haut");
 		System.out.println("s = vers le bas");
 		System.out.println("q = vers la gauche");
 		System.out.println("d = vers la droite.");
-		if (sc.next() == "z") {
+		String a = sc.next();
+		if (a.equals("z")) {
 			System.out.println("haut");
-		} else if (sc.next() == "q") {
+		} else if (a.equals("q")) {
 			System.out.println("gauche");
-		}else if (sc.next() == "s") {
+		}else if (a.equals("s")) {
 			System.out.println("bas");
-		}else if (sc.next() == "d") {
+		}else if (a.equals("d")) {
 			System.out.println("droite");
 		}else {
-			System.out.println("Vous n'avez paas saisi une bonne lettre");
+			System.out.println("Vous n'avez pas saisi une bonne lettre");
 		}sc.close();
 	}
 	/*
