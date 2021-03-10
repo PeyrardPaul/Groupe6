@@ -45,7 +45,11 @@ public class Map {
 	
 	public void saisieClavier(Personnage perso) {
 		Scanner sc = new Scanner(System.in);
-		System.out.println("Dans quelle direction voulez vous aller? (z = vers le haut, s = vers le bas, q = vers la gauche, d = vers la droite");
+		System.out.println("Dans quelle direction voulez vous aller?");
+		System.out.println("z = vers le haut");
+		System.out.println("s = vers le bas");
+		System.out.println("q = vers la gauche");
+		System.out.println("d = vers la droite.");
 		if (sc.next() == "z") {
 			System.out.println("haut");
 		} else if (sc.next() == "q") {
