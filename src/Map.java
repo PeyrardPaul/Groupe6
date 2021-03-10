@@ -4,6 +4,8 @@ public class Map {
 	private int ligne;
 	private int colonne;
 	private char[][] map;
+	Scanner sc = new Scanner(System.in);
+
 
 	public Map() { // Nous nous sommes aid� de cette vid�o--> https://youtu.be/QVXM9YeO7rw
 		System.out.println("Informations :\nMonstre = M\nMur = #\nPotion = +\nPiege = T\n\nVoici la carte ---->");
