@@ -56,7 +56,7 @@ public class Map {
 			System.out.println("droite");
 		}else {
 			System.out.println("Vous n'avez paas saisi une bonne lettre");
-		}
+		}sc.close();
 	}
 	/*
 	 * public void toutLesObjets() { int i = 1; Random rand = new Random(); int min
