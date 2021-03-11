@@ -4,7 +4,7 @@ public class Main {
 		Map map = new Map();
 		map.affichage();
 		Personnage perso = new Personnage();
+		perso.piege();
 		map.jeu(perso, map);
-		map.personnage();
 	}
 }

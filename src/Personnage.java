@@ -70,9 +70,10 @@ public class Personnage {
 	public void piege() {
 		if (pv>3) {
 			System.out.println("Vous êtes tombés sur un piège : -3 PV");
-			pv = pv - 3;
+			pv -= 3;
 			System.out.println("Il vous reste " + pv + "PV");
 		}else {
+			pv -=3;
 			System.out.println("VOUS ETES MORT !!!");
 		}
 	}

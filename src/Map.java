@@ -9,7 +9,7 @@ public class Map {
 	Scanner sc = new Scanner(System.in);
 
 	//constructeur
-	public Map() { // Nous nous sommes aidï¿½ de cette vidï¿½o--> https://youtu.be/QVXM9YeO7rw
+	public Map() { // Nous nous sommes aidé de cette vidéo--> https://youtu.be/QVXM9YeO7rw
 		System.out.println("Informations :\nMonstre = M\nMur = #\nPotion = +\nPiege = T\n\nVoici la carte ---->");
 		ligne = 15;
 		colonne = 15;
@@ -66,7 +66,7 @@ public class Map {
 		System.out.println("z = vers le haut");
 		System.out.println("s = vers le bas");
 		System.out.println("q = vers la gauche");
-		System.out.println("d = vers la droite.");
+		System.out.println("d = vers la droite");
 		System.out.println("e = prendre une potion");
 		String a = sc.next();
 		if (a.equals("z")) {
@@ -137,23 +137,9 @@ public class Map {
 			carte.affichage();
 		} else if (a.equals("e")) {
 			perso.potion();
+			System.out.println();
 		} else {
 			System.err.println("Vous n'avez pas saisi une bonne lettre");
 		}
 	}
-
-	// création perso
-	public void personnage() {
-		System.out.println("Création du personnage: ");
-			new Personnage();
-	}
-	/*
-	 * public void toutLesObjets() { int i = 1; Random rand = new Random(); int min
-	 * = 1; int max = 15; boolean y = true; while (i < 5) { while (y) { if
-	 * (map[rand.nextInt(max - min) + min][rand.nextInt(max - min) + min] == '-') {
-	 * map[rand.nextInt(max - min) + min][rand.nextInt(max - min) + min] = 'M'; y =
-	 * false; }else { map[rand.nextInt(max - min) + min][rand.nextInt(max - min) +
-	 * min] = map[rand.nextInt(max - min) + min][rand.nextInt(max - min) + min]; }
-	 * }i++; } }
-	 */
 }
