@@ -4,6 +4,7 @@ public class Main {
 		Map map = new Map();
 		map.affichage();
 		Personnage perso = new Personnage();
-		map.saisieClavier(perso, map);
+		map.jeu(perso, map);
+		map.personnage();
 	}
 }

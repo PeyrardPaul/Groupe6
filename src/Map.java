@@ -1,11 +1,14 @@
+import java.util.Random;
 import java.util.Scanner;
 
 public class Map {
 	private int ligne;
 	private int colonne;
 	private char[][] map;
+	Random rand = new Random();
 	Scanner sc = new Scanner(System.in);
 
+	//constructeur
 	public Map() { // Nous nous sommes aidï¿½ de cette vidï¿½o--> https://youtu.be/QVXM9YeO7rw
 		System.out.println("Informations :\nMonstre = M\nMur = #\nPotion = +\nPiege = T\n\nVoici la carte ---->");
 		ligne = 15;
@@ -14,12 +17,16 @@ public class Map {
 
 		for (int i = 0; i < ligne; i++) {
 			for (int j = 0; j < colonne; j++) {
-				map[i][j] = '-';
-				map[7][7] = 'P';
+				map[i][j] = 'X';
 			}
 		}
+		int min = 0; 
+		int max = 14;
+		map[rand.nextInt(max - min) + min][rand.nextInt(max - min) + min] = 'O';
+		
 	}
 
+	//affichage
 	public void affichage() {
 		for (int i = 0; i < ligne; i++) {
 			for (int j = 0; j < colonne; j++) {
@@ -29,6 +36,7 @@ public class Map {
 		}
 	}
 
+	//placer un objet
 	public void objet(int a, int b, char c) { // a etant les lignes et b les colonnes
 		a -= 1;
 		b -= 1;
@@ -36,7 +44,7 @@ public class Map {
 			throw new ArrayIndexOutOfBoundsException(
 					"Attention, vous essayez de mettre un objet en dehors de la carte");
 		} else {
-			if (map[a][b] == '-') {
+			if (map[a][b] == 'X' || map[a][b] == ' ') {
 				map[a][b] = c;
 			} else {
 				System.out.println("Attention, l'emplacement est déja pris à la " + (a + 1) + "ème ligne et la "
@@ -45,10 +53,12 @@ public class Map {
 		}
 	}
 
+	//la partie
 	public void jeu(Personnage perso, Map carte) {
-		for (int i = 0; i != 3; i++) {
+		while (map[1][1] != 'O') {
 			saisieClavier(perso, carte);
 		}
+		System.out.println("Vous avez réussi à sortir du Donjon\nVICTOIRE!!!");
 	}
 
 	public void saisieClavier(Personnage perso, Map carte) {
@@ -63,10 +73,10 @@ public class Map {
 			char pers;
 			for (int i = 0; i < ligne; i++) {
 				for (int j = 0; j < colonne; j++) {
-					if (map[i][j] == 'P') {
+					if (map[i][j] == 'O') {
 						if ((i - 1) >= 0) {
 							pers = map[i][j];
-							map[i][j] = '-';
+							map[i][j] = ' ';
 							map[i - 1][j] = pers;
 						} else {
 							System.err.println("Vous voulez vous déplacer en dehors de la carte !");
@@ -79,10 +89,10 @@ public class Map {
 			char pers;
 			for (int i = 0; i < ligne; i++) {
 				for (int j = 0; j < colonne; j++) {
-					if (map[i][j] == 'P') {
+					if (map[i][j] == 'O') {
 						if ((j - 1) >= 0) {
 							pers = map[i][j];
-							map[i][j] = '-';
+							map[i][j] = ' ';
 							map[i][j-1] = pers;
 						} else {
 							System.err.println("Vous voulez vous déplacer en dehors de la carte !");
@@ -95,11 +105,12 @@ public class Map {
 			char pers;
 			for (int i = 0; i < ligne; i++) {
 				for (int j = 0; j < colonne; j++) {
-					if (map[i][j] == 'P') {
-						if ((i+1) <=(ligne)) {
+					if (map[i][j] == 'O') {
+						if ((i+1) <ligne) {
 							pers = map[i][j];
-							map[i][j] = '-';
 							map[i+1][j] = pers;
+							map[i][j] = ' ';
+							i+=1;
 						}else {
 							System.err.println("Vous voulez vous déplacer en dehors de la carte !");
 						}
@@ -111,11 +122,12 @@ public class Map {
 			char pers;
 			for (int i = 0; i < ligne; i++) {
 				for (int j = 0; j < colonne; j++) {
-					if (map[i][j] == 'P') {
-						if ((j+1) <= colonne) {
+					if (map[i][j] == 'O') {
+						if ((j+1) < colonne) {
 							pers = map[i][j];
-							map[i][j] = '-';
+							map[i][j] = ' ';
 							map[i][j+1] = pers;
+							j+=1;
 						} else {
 							System.err.println("Vous voulez vous déplacer en dehors de la carte !");
 						}
@@ -130,6 +142,11 @@ public class Map {
 		}
 	}
 
+	// création perso
+	public void personnage() {
+		System.out.println("Création du personnage: ");
+			new Personnage();
+	}
 	/*
 	 * public void toutLesObjets() { int i = 1; Random rand = new Random(); int min
 	 * = 1; int max = 15; boolean y = true; while (i < 5) { while (y) { if
