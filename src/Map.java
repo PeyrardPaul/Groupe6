@@ -7,6 +7,10 @@ public class Map {
 	private char[][] map;
 	Random rand = new Random();
 	Scanner sc = new Scanner(System.in);
+	int min = 0;
+	int max = 11;
+	int a = rand.nextInt(max - min) + min;
+	int b = rand.nextInt(max - min) + min;
 
 	// constructeur
 	public Map() { // Nous nous sommes aidé de cette vidéo--> https://youtu.be/QVXM9YeO7rw
@@ -20,15 +24,12 @@ public class Map {
 				map[i][j] = 'X';
 			}
 		}
-		int min = 0;
-		int max = 11;
-		int a = rand.nextInt(max - min) + min;
-		int b = rand.nextInt(max - min) + min;
+
 		map[a][b] = 'O';
 		while (a == 1 && b == 1) {
 			map[a][b] = 'X';
 			a = rand.nextInt(max - min) + min;
-			b= rand.nextInt(max - min) + min;
+			b = rand.nextInt(max - min) + min;
 			map[a][b] = 'O';
 		}
 		affichage();
@@ -61,6 +62,16 @@ public class Map {
 		}
 	}
 
+	public void casesPieges(Map carte) {
+		int p = 1;
+		
+		while(p<=15) {
+			if(a != 1 || b != 1) {
+				
+			}
+		}
+	}
+
 	// la partie
 	public void jeu(Personnage perso, Map carte) {
 		while (map[1][1] != 'O' || perso.getPv() != 0) {
@@ -73,8 +84,9 @@ public class Map {
 			System.out.println("Vous avez réussi à sortir du Donjon !\nVICTOIRE!!!");
 		}
 	}
-	
-	// Pour haut, bas, droite, gauche avec quelques modifications réalisées : https://youtu.be/7CHhq2MXWbk
+
+	// Pour haut, bas, droite, gauche avec quelques modifications réalisées :
+	// https://youtu.be/7CHhq2MXWbk
 	public void haut(Personnage perso, Map carte) {
 		char pers;
 		for (int i = 0; i < ligne; i++) {
@@ -84,7 +96,8 @@ public class Map {
 						pers = map[i][j];
 						map[i][j] = ' ';
 						map[i - 1][j] = pers;
-						if ((i-1) == 1 && j == 10) {
+
+						if ((i - 1) == 1 && j == 10) {
 							perso.piege();
 						}
 					} else {
@@ -94,7 +107,7 @@ public class Map {
 			}
 		}
 	}
-	
+
 	public void gauche(Personnage perso, Map carte) {
 		char pers;
 		for (int i = 0; i < ligne; i++) {
@@ -110,7 +123,7 @@ public class Map {
 				}
 			}
 		}
-	} 
+	}
 
 	public void bas(Personnage perso, Map carte) {
 		char pers;
@@ -129,7 +142,7 @@ public class Map {
 			}
 		}
 	}
-	
+
 	public void droite(Personnage perso, Map carte) {
 		char pers;
 		for (int i = 0; i < ligne; i++) {
@@ -147,7 +160,7 @@ public class Map {
 			}
 		}
 	}
-	
+
 	public void saisieClavier(Personnage perso, Map carte) {
 		System.out.println("Dans quelle direction voulez vous aller?");
 		System.out.println("z = vers le haut");
@@ -157,16 +170,16 @@ public class Map {
 		System.out.println("e = prendre une potion");
 		String a = sc.next();
 		if (a.equals("z")) {
-			haut(perso,carte);
+			haut(perso, carte);
 			carte.affichage();
 		} else if (a.equals("q")) {
-			gauche(perso,carte);
+			gauche(perso, carte);
 			carte.affichage();
 		} else if (a.equals("s")) {
-			bas(perso,carte);
+			bas(perso, carte);
 			carte.affichage();
 		} else if (a.equals("d")) {
-			droite(perso,carte);
+			droite(perso, carte);
 			carte.affichage();
 		} else if (a.equals("e")) {
 			perso.potion();
