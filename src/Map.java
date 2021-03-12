@@ -8,11 +8,11 @@ public class Map {
 	Random rand = new Random();
 	Scanner sc = new Scanner(System.in);
 
-	//constructeur
+	// constructeur
 	public Map() { // Nous nous sommes aidé de cette vidéo--> https://youtu.be/QVXM9YeO7rw
-		System.out.println("Informations :\nMonstre = M\nMur = #\nPotion = +\nPiege = T\n\nVoici la carte ---->");
-		ligne = 15;
-		colonne = 15;
+		System.out.println("Informations :\nMonstre = M\nMur = #\nPiege = T\n\nVoici la carte ---->");
+		ligne = 12;
+		colonne = 12;
 		map = new char[ligne][colonne];
 
 		for (int i = 0; i < ligne; i++) {
@@ -20,13 +20,21 @@ public class Map {
 				map[i][j] = 'X';
 			}
 		}
-		int min = 0; 
-		int max = 14;
-		map[rand.nextInt(max - min) + min][rand.nextInt(max - min) + min] = 'O';
-		
+		int min = 0;
+		int max = 11;
+		int a = rand.nextInt(max - min) + min;
+		int b = rand.nextInt(max - min) + min;
+		map[a][b] = 'O';
+		while (a == 1 && b == 1) {
+			map[a][b] = 'X';
+			a = rand.nextInt(max - min) + min;
+			b= rand.nextInt(max - min) + min;
+			map[a][b] = 'O';
+		}
+		affichage();
 	}
 
-	//affichage
+	// affichage
 	public void affichage() {
 		for (int i = 0; i < ligne; i++) {
 			for (int j = 0; j < colonne; j++) {
@@ -36,7 +44,7 @@ public class Map {
 		}
 	}
 
-	//placer un objet
+	// placer un objet
 	public void objet(int a, int b, char c) { // a etant les lignes et b les colonnes
 		a -= 1;
 		b -= 1;
@@ -53,14 +61,92 @@ public class Map {
 		}
 	}
 
-	//la partie
+	// la partie
 	public void jeu(Personnage perso, Map carte) {
-		while (map[1][1] != 'O') {
+		while (map[1][1] != 'O' || perso.getPv() != 0) {
+			System.out.println(perso);
 			saisieClavier(perso, carte);
 		}
-		System.out.println("Vous avez réussi à sortir du Donjon\nVICTOIRE!!!");
+		if (perso.getPv() == 0) {
+			System.out.println("VOUS ETES MORT !!!");
+		} else {
+			System.out.println("Vous avez réussi à sortir du Donjon !\nVICTOIRE!!!");
+		}
+	}
+	
+	public void haut(Personnage perso, Map carte) {
+		char pers;
+		for (int i = 0; i < ligne; i++) {
+			for (int j = 0; j < colonne; j++) {
+				if (map[i][j] == 'O') {
+					if ((i - 1) >= 0) {
+						pers = map[i][j];
+						map[i][j] = ' ';
+						map[i - 1][j] = pers;
+						if ((i-1) == 1 && j == 10) {
+							perso.piege();
+						}
+					} else {
+						System.err.println("Vous voulez vous déplacer en dehors de la carte !");
+					}
+				}
+			}
+		}
+	}
+	
+	public void gauche(Personnage perso, Map carte) {
+		char pers;
+		for (int i = 0; i < ligne; i++) {
+			for (int j = 0; j < colonne; j++) {
+				if (map[i][j] == 'O') {
+					if ((j - 1) >= 0) {
+						pers = map[i][j];
+						map[i][j] = ' ';
+						map[i][j - 1] = pers;
+					} else {
+						System.err.println("Vous voulez vous déplacer en dehors de la carte !");
+					}
+				}
+			}
+		}
 	}
 
+	public void bas(Personnage perso, Map carte) {
+		char pers;
+		for (int i = 0; i < ligne; i++) {
+			for (int j = 0; j < colonne; j++) {
+				if (map[i][j] == 'O') {
+					if ((i + 1) < ligne) {
+						pers = map[i][j];
+						map[i + 1][j] = pers;
+						map[i][j] = ' ';
+						i += 1;
+					} else {
+						System.err.println("Vous voulez vous déplacer en dehors de la carte !");
+					}
+				}
+			}
+		}
+	}
+	
+	public void droite(Personnage perso, Map carte) {
+		char pers;
+		for (int i = 0; i < ligne; i++) {
+			for (int j = 0; j < colonne; j++) {
+				if (map[i][j] == 'O') {
+					if ((j + 1) < colonne) {
+						pers = map[i][j];
+						map[i][j] = ' ';
+						map[i][j + 1] = pers;
+						j += 1;
+					} else {
+						System.err.println("Vous voulez vous déplacer en dehors de la carte !");
+					}
+				}
+			}
+		}
+	}
+	
 	public void saisieClavier(Personnage perso, Map carte) {
 		System.out.println("Dans quelle direction voulez vous aller?");
 		System.out.println("z = vers le haut");
@@ -70,75 +156,23 @@ public class Map {
 		System.out.println("e = prendre une potion");
 		String a = sc.next();
 		if (a.equals("z")) {
-			char pers;
-			for (int i = 0; i < ligne; i++) {
-				for (int j = 0; j < colonne; j++) {
-					if (map[i][j] == 'O') {
-						if ((i - 1) >= 0) {
-							pers = map[i][j];
-							map[i][j] = ' ';
-							map[i - 1][j] = pers;
-						} else {
-							System.err.println("Vous voulez vous déplacer en dehors de la carte !");
-						}
-					}
-				}
-			}
+			haut(perso,carte);
 			carte.affichage();
 		} else if (a.equals("q")) {
-			char pers;
-			for (int i = 0; i < ligne; i++) {
-				for (int j = 0; j < colonne; j++) {
-					if (map[i][j] == 'O') {
-						if ((j - 1) >= 0) {
-							pers = map[i][j];
-							map[i][j] = ' ';
-							map[i][j-1] = pers;
-						} else {
-							System.err.println("Vous voulez vous déplacer en dehors de la carte !");
-						}
-					}
-				}
-			}
+			gauche(perso,carte);
 			carte.affichage();
 		} else if (a.equals("s")) {
-			char pers;
-			for (int i = 0; i < ligne; i++) {
-				for (int j = 0; j < colonne; j++) {
-					if (map[i][j] == 'O') {
-						if ((i+1) <ligne) {
-							pers = map[i][j];
-							map[i+1][j] = pers;
-							map[i][j] = ' ';
-							i+=1;
-						}else {
-							System.err.println("Vous voulez vous déplacer en dehors de la carte !");
-						}
-					}
-				}
-			}
+			bas(perso,carte);
 			carte.affichage();
 		} else if (a.equals("d")) {
-			char pers;
-			for (int i = 0; i < ligne; i++) {
-				for (int j = 0; j < colonne; j++) {
-					if (map[i][j] == 'O') {
-						if ((j+1) < colonne) {
-							pers = map[i][j];
-							map[i][j] = ' ';
-							map[i][j+1] = pers;
-							j+=1;
-						} else {
-							System.err.println("Vous voulez vous déplacer en dehors de la carte !");
-						}
-					}
-				}
-			}
+			droite(perso,carte);
 			carte.affichage();
 		} else if (a.equals("e")) {
 			perso.potion();
+			carte.affichage();
 			System.out.println();
 		} else {
+			carte.affichage();
 			System.err.println("Vous n'avez pas saisi une bonne lettre");
 		}
 	}

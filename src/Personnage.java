@@ -9,11 +9,10 @@ public class Personnage {
 
 	//Constructeur
 	public Personnage() {
-		pv = 20;
+		pv = 2;
 		potion = 1;
 		System.out.println("Veuillez entrer votre nom : ");
 		name = scp.next();
-		System.out.println("Bonjour "+name+", voici vos caractéristiques :\nNombre de PV: "+pv+"\nNombre de potion: "+potion+"\n----------------");
 	}
 
 	//getter et setteur
@@ -44,7 +43,7 @@ public class Personnage {
 	//methodes
 	
 	public String toString() {
-		return "Bonjour "+name+", voici vos caractéristiques :\nNombre de PV: "+pv+"\nNombre de potion: "+potion+"\n----------------";
+		return "Vos caractéristiques :\nNombre de PV: "+pv+"\nNombre de potion: "+potion+"\n----------------";
 	}
 	
 	public void potion() {
@@ -73,8 +72,8 @@ public class Personnage {
 			pv -= 3;
 			System.out.println("Il vous reste " + pv + "PV");
 		}else {
-			pv -=3;
-			System.out.println("VOUS ETES MORT !!!");
+			System.out.println("Vous êtes tombés sur un piège : -"+pv+ "PV");
+			pv -=pv;
 		}
 	}
 }
