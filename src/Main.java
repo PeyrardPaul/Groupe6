@@ -15,7 +15,11 @@ public class Main {
 		}*/
 		Map map = new Map();
 		Personnage perso = new Personnage();
+		map.casesPieges(perso,map);
+		
+		
 		map.jeu(perso, map);
+		
 		
 	}
 }

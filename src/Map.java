@@ -1,11 +1,14 @@
 import java.util.Random;
 import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 
 public class Map {
 	private int ligne;
 	private int colonne;
 	private char[][] map;
-	
+	ArrayList<String> trap = new ArrayList<String>();
 	Random rand = new Random();
 	Scanner sc = new Scanner(System.in);
 	int min = 0;
@@ -63,17 +66,25 @@ public class Map {
 		}
 	}
 
-	/*public void casesPieges(Personnage perso, Map carte) {
+	public void casesPieges(Personnage perso, Map carte) {
 		int p = 1;
-		
-		while(p<=15) {
-			int alea =rand.nextInt(max - min) + min; 
-			int aleadeux = rand.nextInt(max - min) + min; 
-			if((alea != a && aleadeux != b) && (alea != 1 && aleadeux != 1)) {
-				p+=1;
+
+		while (p <= 15) {
+			int alea = rand.nextInt(max - min) + min;
+			int aleadeux = rand.nextInt(max - min) + min;
+			if ((alea != a && aleadeux != b) && (alea != 1 && aleadeux != 1)) {
+				p += 1;
+				String.valueOf(alea);
+				String.valueOf(aleadeux);
+				String posTrap = String.valueOf(alea) + String.valueOf(aleadeux);
+				trap.add(posTrap);
 			}
 		}
-	}*/
+		for (String elem : trap) {
+			System.out.println(elem);
+		}
+
+	}
 
 	// la partie
 	public void jeu(Personnage perso, Map carte) {
@@ -99,15 +110,28 @@ public class Map {
 						pers = map[i][j];
 						map[i][j] = ' ';
 						map[i - 1][j] = pers;
+						String posJoueur = String.valueOf(i) + String.valueOf(j);
+						casesPieges(perso, carte);
+						Iterator<String> it = trap.iterator();
+						boolean y = it.hasNext();
+						while (y) {
+							
+							if(posJoueur.equals(it.next())){
+								y = false;}
+							
+							String nxt = it.next();
+							
+							}
 
-						
-					} else {
-						System.err.println("Vous voulez vous déplacer en dehors de la carte !");
 					}
+				} else {
+					System.err.println("Vous voulez vous déplacer en dehors de la carte !");
 				}
 			}
 		}
 	}
+
+	
 
 	public void gauche(Personnage perso, Map carte) {
 		char pers;
