@@ -74,6 +74,7 @@ public class Map {
 		}
 	}
 	
+	// Pour haut, bas, droite, gauche avec quelques modifications réalisées : https://youtu.be/7CHhq2MXWbk
 	public void haut(Personnage perso, Map carte) {
 		char pers;
 		for (int i = 0; i < ligne; i++) {
