@@ -5,6 +5,7 @@ public class Map {
 	private int ligne;
 	private int colonne;
 	private char[][] map;
+	
 	Random rand = new Random();
 	Scanner sc = new Scanner(System.in);
 	int min = 0;
@@ -62,15 +63,17 @@ public class Map {
 		}
 	}
 
-	public void casesPieges(Map carte) {
+	/*public void casesPieges(Personnage perso, Map carte) {
 		int p = 1;
 		
 		while(p<=15) {
-			if(a != 1 || b != 1) {
-				
+			int alea =rand.nextInt(max - min) + min; 
+			int aleadeux = rand.nextInt(max - min) + min; 
+			if((alea != a && aleadeux != b) && (alea != 1 && aleadeux != 1)) {
+				p+=1;
 			}
 		}
-	}
+	}*/
 
 	// la partie
 	public void jeu(Personnage perso, Map carte) {
@@ -97,9 +100,7 @@ public class Map {
 						map[i][j] = ' ';
 						map[i - 1][j] = pers;
 
-						if ((i - 1) == 1 && j == 10) {
-							perso.piege();
-						}
+						
 					} else {
 						System.err.println("Vous voulez vous déplacer en dehors de la carte !");
 					}
