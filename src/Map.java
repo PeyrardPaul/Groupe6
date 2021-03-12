@@ -110,7 +110,7 @@ public class Map {
 				}
 			}
 		}
-	}
+	} 
 
 	public void bas(Personnage perso, Map carte) {
 		char pers;
