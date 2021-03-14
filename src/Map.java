@@ -127,7 +127,7 @@ public class Map {
 
 					}
 				} else {
-					System.err.println("Vous voulez vous déplacer en dehors de la carte !");
+					System.err.println("Vous, voulez vous déplacer en dehors de la carte !");
 				}
 			}
 		}
