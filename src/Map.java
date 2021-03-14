@@ -80,10 +80,12 @@ public class Map {
 				trap.add(posTrap);
 			}
 		}
+		//penser à retirer ce for
 		for (String elem : trap) {
-			System.out.println(elem);
+			System.out.print("["+elem+"]");
 		}
-
+		int nbrpieges = trap.size();
+		System.out.println("Attention, "+ nbrpieges +" pièges sont cachés dans le donjon...");
 	}
 
 	// la partie
