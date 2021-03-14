@@ -115,11 +115,24 @@ public class Map {
 						String posJoueur = String.valueOf(i) + String.valueOf(j);
 						casesPieges(perso, carte);
 						Iterator<String> it = trap.iterator();
+						//y est vrai tant que la liste n'est pas parcourue
+						//entièrement
 						boolean y = it.hasNext();
-						while (y) {
+						//z est vrai tant que la position du joueur n'est pas
+						// celle d'un piège
+						boolean z = true;
+						while (y && z) {
 							
 							if(posJoueur.equals(it.next())){
-								y = false;}
+								z = false;
+								it.remove();}
+							int lastItem = trap.size()-1;
+							if(it.next().equals(lastItem)) {
+								
+								if() {
+									y = false;
+								}
+							}
 							
 							String nxt = it.next();
 							
@@ -127,7 +140,7 @@ public class Map {
 
 					}
 				} else {
-					System.err.println("Vous, voulez vous déplacer en dehors de la carte !");
+					System.err.println("Vous voulez vous déplacer en dehors de la carte !");
 				}
 			}
 		}
