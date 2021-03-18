@@ -101,19 +101,27 @@ public class Map {
 		}
 	}
 
-	// Pour haut, bas, droite, gauche avec quelques modifications réalisées :
-	// https://youtu.be/7CHhq2MXWbk
-	public void haut(Personnage perso, Map carte) {
+	// On vas utiliser une seule fonction pour haut bas gauche, on ajoute les argument du foncton a et b, a pour dire l'axe haut et bas, et b pour l'axe gauche et droite :
+
+	
+	public void deplacer(Personnage perso, Map carte,int a,int b) {
 		char pers;
+	
+		//cette variable est vrais quand la position du perso est trouver dans le map
+		boolean positionPersoTrouver=false;
 		for (int i = 0; i < ligne; i++) {
 			for (int j = 0; j < colonne; j++) {
 				if (map[i][j] == 'O') {
-					if ((i - 1) >= 0) {
+					positionPersoTrouver=true;
+				
+					//on test pour i et j s'il egal 0 pour dire que le jouer est en dehors du terrain
+					if ((i + a) >= 0&& (j + b) >= 0&&(i + a) < 12&& (j + b) < 12 ) {
+					
 						pers = map[i][j];
 						map[i][j] = ' ';
-						map[i - 1][j] = pers;
+						map[i + a][j + b] = pers;
 						String posJoueur = String.valueOf(i) + String.valueOf(j);
-						casesPieges(perso, carte);
+				
 						Iterator<String> it = trap.iterator();
 						//y est vrai tant que la liste n'est pas parcourue
 						//entièrement
@@ -121,85 +129,46 @@ public class Map {
 						//z est vrai tant que la position du joueur n'est pas
 						// celle d'un piège
 						boolean z = true;
-						while (y && z) {
+						String nxt;
+						//on a pas besoin la variable y pour tester s'il y le piège n'est pas encore parcourou
+						while (it.hasNext() && z) {
+						
+							nxt= it.next();
 							
-							if(posJoueur.equals(it.next())){
+							if(posJoueur.equals(nxt)){
 								z = false;
-								it.remove();}
-							int lastItem = trap.size()-1;
-							if(it.next().equals(lastItem)) {
+								it.remove();
+								perso.piege();
+							}
+							/*int lastItem = trap.size()-1;
+							if(nxt.equals(lastItem)) {
 								
-								if() {
+								if(false) {
 									y = false;
-								}
+								}*/
 							}
-							
-							String nxt = it.next();
-							
-							}
+						
 
-					}
-				} else {
-					System.err.println("Vous voulez vous déplacer en dehors de la carte !");
-				}
-			}
-		}
-	}
-
-	
-
-	public void gauche(Personnage perso, Map carte) {
-		char pers;
-		for (int i = 0; i < ligne; i++) {
-			for (int j = 0; j < colonne; j++) {
-				if (map[i][j] == 'O') {
-					if ((j - 1) >= 0) {
-						pers = map[i][j];
-						map[i][j] = ' ';
-						map[i][j - 1] = pers;
 					} else {
 						System.err.println("Vous voulez vous déplacer en dehors de la carte !");
 					}
+					//on a pas besoin de parcourir les reste du map quand on a trouver la position du jouer
+				
+				}
+				//quand on a trouver la position du persone on ne vas plus parcourir tous les map
+				if(positionPersoTrouver) {
+					break;
 				}
 			}
+			//quand on a trouver la position du persone on ne vas plus parcourir tous les map
+			if(positionPersoTrouver) {
+				break;
+			}
 		}
+		
 	}
 
-	public void bas(Personnage perso, Map carte) {
-		char pers;
-		for (int i = 0; i < ligne; i++) {
-			for (int j = 0; j < colonne; j++) {
-				if (map[i][j] == 'O') {
-					if ((i + 1) < ligne) {
-						pers = map[i][j];
-						map[i + 1][j] = pers;
-						map[i][j] = ' ';
-						i += 1;
-					} else {
-						System.err.println("Vous voulez vous déplacer en dehors de la carte !");
-					}
-				}
-			}
-		}
-	}
 
-	public void droite(Personnage perso, Map carte) {
-		char pers;
-		for (int i = 0; i < ligne; i++) {
-			for (int j = 0; j < colonne; j++) {
-				if (map[i][j] == 'O') {
-					if ((j + 1) < colonne) {
-						pers = map[i][j];
-						map[i][j] = ' ';
-						map[i][j + 1] = pers;
-						j += 1;
-					} else {
-						System.err.println("Vous voulez vous déplacer en dehors de la carte !");
-					}
-				}
-			}
-		}
-	}
 
 	public void saisieClavier(Personnage perso, Map carte) {
 		System.out.println("Dans quelle direction voulez vous aller?");
@@ -210,21 +179,25 @@ public class Map {
 		System.out.println("e = prendre une potion");
 		String a = sc.next();
 		if (a.equals("z")) {
-			haut(perso, carte);
+			//deplacement vers le haut
+			deplacer(perso, carte, -1, 0);
 			carte.affichage();
 		} else if (a.equals("q")) {
-			gauche(perso, carte);
+			//deplacement gache
+			deplacer(perso, carte,0,-1);
 			carte.affichage();
 		} else if (a.equals("s")) {
-			bas(perso, carte);
+			//deplacement bas
+			deplacer(perso, carte,+1,0);
 			carte.affichage();
 		} else if (a.equals("d")) {
-			droite(perso, carte);
+			//deplacement à droit
+			deplacer(perso, carte,0,1);
 			carte.affichage();
 		} else if (a.equals("e")) {
 			perso.potion();
 			carte.affichage();
-			System.out.println();
+			
 		} else {
 			carte.affichage();
 			System.err.println("Vous n'avez pas saisi une bonne lettre");
