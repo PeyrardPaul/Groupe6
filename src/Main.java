@@ -16,8 +16,8 @@ public class Main {
 		Map map = new Map();
 		Personnage perso = new Personnage();
 		map.casesPieges(perso,map);
-		map.deplacerMultiple(perso, map, 5);
-		//map.jeu(perso, map);
+		//map.deplacerMultiple(perso, map, 3);
+		map.jeu(perso, map);
 		
 		
 	}

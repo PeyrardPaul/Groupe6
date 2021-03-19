@@ -100,11 +100,41 @@ public class Map {
 		}
 	}
 	
-	public void deplacerMultiple(Personnage perso, Map carte, int a) {
+	/*public void deplacerMultiple(Personnage perso, Map carte, int a) {
+		System.out.println("Dans quelle direction voulez vous aller?");
+		System.out.println("z = vers le haut");
+		System.out.println("s = vers le bas");
+		System.out.println("q = vers la gauche");
+		System.out.println("d = vers la droite");
+		System.out.println("e = prendre une potion");
+		int z = 0;
+		int s = 0;
+		int d = 0;
+		int q = 0;
+		String b;
 		for (int i =0; i<a; i++) {
-			saisieClavier(perso, carte);
+			b = sc.next();
+			if (b.equals("q")) {
+				q -=1;
+				//deplacer(perso, carte, 0, q);
+			}
+			if (b.equals("z")) {
+				z-=1;
+				//deplacer(perso, carte, z, 0);
+			}
+			if (b.equals("s")) {
+				s+=1;
+				//deplacer(perso, carte, s, 0);
+			}
+			
+			if (b.equals("d")) {
+				d+=1;
+				//deplacer(perso, carte, 0, d);
+			}
+			deplacer(perso, carte, (z+s), (d+q));
 		}
-	}
+		carte.affichage();
+	}*/
 
 	// On vas utiliser une seule fonction pour haut bas gauche, on ajoute les argument du foncton a et b, a pour dire l'axe haut et bas, et b pour l'axe gauche et droite :
 
