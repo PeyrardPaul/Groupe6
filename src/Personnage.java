@@ -9,7 +9,7 @@ public class Personnage {
 
 	//Constructeur
 	public Personnage() {
-		pv = 2;
+		pv = 20;
 		potion = 1;
 		System.out.println("Veuillez entrer votre nom : ");
 		name = scp.next();

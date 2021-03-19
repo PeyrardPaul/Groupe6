@@ -1,7 +1,6 @@
 import java.util.Random;
 import java.util.Scanner;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Iterator;
 
 public class Map {
@@ -100,6 +99,12 @@ public class Map {
 			System.out.println("Vous avez réussi à sortir du Donjon !\nVICTOIRE!!!");
 		}
 	}
+	
+	public void deplacerMultiple(Personnage perso, Map carte, int a) {
+		for (int i =0; i<a; i++) {
+			saisieClavier(perso, carte);
+		}
+	}
 
 	// On vas utiliser une seule fonction pour haut bas gauche, on ajoute les argument du foncton a et b, a pour dire l'axe haut et bas, et b pour l'axe gauche et droite :
 
@@ -125,7 +130,6 @@ public class Map {
 						Iterator<String> it = trap.iterator();
 						//y est vrai tant que la liste n'est pas parcourue
 						//entièrement
-						boolean y = it.hasNext();
 						//z est vrai tant que la position du joueur n'est pas
 						// celle d'un piège
 						boolean z = true;
@@ -165,7 +169,6 @@ public class Map {
 				break;
 			}
 		}
-		
 	}
 
 
