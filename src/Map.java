@@ -97,10 +97,11 @@ public class Map {
 			if ((map[1][1] == 'O') || (perso.getPv() == 0)) {
 				if (perso.getPv() == 0) {
 					System.out.println("VOUS ETES MORT !!!");
+					break;
 				} 
 				if (map[1][1] == 'O'){
 					System.out.println("Vous avez réussi à sortir du Donjon !\nVICTOIRE!!!");
-
+					break;
 				}
 				b = false;
 			}
