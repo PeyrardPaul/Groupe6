@@ -1,7 +1,5 @@
-import java.io.IOException;
-import java.net.ServerSocket;
-import java.net.Socket;
-import java.net.UnknownHostException;
+import java.io.*;
+import java.net.*;
 
 public class Serveur {
     public static final int PORT=6000;
