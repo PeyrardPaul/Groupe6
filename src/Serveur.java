@@ -20,7 +20,7 @@ public class Serveur {
                 Socket socket;
                 try {
                     socket = serverSocket.accept();
-                    SocketJeu newPlayer = new Socketjeu(socket);
+                    SocketJeu newPlayer = new SocketJeu(socket);
                     newPlayer.start();
                 } catch (IOException e) {
                     System.err.println("Une erreure est arrivée lorsqu'un joueur a tenté de se connecter... ");

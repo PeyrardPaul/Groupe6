@@ -7,11 +7,11 @@ import java.io.PrintStream;
 import java.net.Socket;
 
 public class SocketJeu extends Thread{
-    private SocketJeu socket;
+    private Socket socket;
     private PrintStream out;
     private BufferedReader in;
 
-    public SocketJeu(SocketJeu socket) {
+    public SocketJeu(Socket socket) {
         try {
             this.socket=socket;
             out = new PrintStream( socket.getOutputStream() );
