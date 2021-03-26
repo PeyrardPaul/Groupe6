@@ -29,7 +29,7 @@ public class Client {
             String reponse;
             try {
                 reponse = in.readLine();
-                System.out.println("Reponse serveur : "+reponse);
+                System.out.println("Lancement de la partie !!!");
 
             } catch (IOException e) {
                 System.out.println("La connexion est perdue !");
