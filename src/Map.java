@@ -90,6 +90,7 @@ public class Map {
 	// la partie
 	public void jeu(Personnage perso, Map carte) {
 		while (map[1][1] != 'O' || perso.getPv() != 0) {
+			System.out.println(map[1][1]);
 			System.out.println(perso);
 			saisieClavier(perso, carte);
 		}
@@ -97,6 +98,7 @@ public class Map {
 			System.out.println("VOUS ETES MORT !!!");
 		} else {
 			System.out.println("Vous avez réussi à sortir du Donjon !\nVICTOIRE!!!");
+			
 		}
 	}
 	
