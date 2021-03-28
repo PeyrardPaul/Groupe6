@@ -10,6 +10,7 @@ public class Client {
     private PrintStream out = null;
     private BufferedReader in =null;
     private Socket socket;
+    private char moi;
     public Client() {
         try {
             socket = new Socket("127.0.0.1", 6000);
@@ -22,19 +23,53 @@ public class Client {
 
     public void loop() {
         Scanner sc = new Scanner(System.in);
-
-        while(true) {
-            String line = sc.next();
-            out.println(line);
-            String reponse;
-            try {
-                reponse = in.readLine();
-                System.out.println("Lancement de la partie !!!");
-
-            } catch (IOException e) {
-                System.out.println("La connexion est perdue !");
-                System.exit(1);
-            }
+        String tmp="";
+        String line="";
+        int step=0;
+        while(true) {     
+        	try {
+        		if(step==0) {
+        			line = sc.next();
+        			this.out.println(line);
+        			tmp=in.readLine();	
+        			if(tmp.equals("jeu")) {
+        			step=1;
+        			}else {
+        				System.out.println(tmp);
+        			}
+        		
+        		}
+        		
+        		if(step==1) {
+        			tmp=in.readLine();	
+        			System.out.println(tmp);
+        			line = sc.next();
+        			this.out.println(line);
+        			tmp=in.readLine();	
+        			System.out.println("Bienvenue, vous êtez "+tmp+" dans le jeu");
+        			while(true) {
+        				tmp=in.readLine();	
+            			System.out.println(tmp);
+            			if(tmp=="-1") {
+            				break;
+            			}
+            			
+        			}
+        			step=1;
+        			
+        			
+        		}
+        		
+			
+				
+				
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+        	
+            
+           
         }
     }
 

@@ -37,6 +37,35 @@ public class Map {
 		}
 		affichage();
 	}
+	// constructeur surchage pour  multiplateyer
+	public Map(Boolean multiplayer) {
+		System.out.println("Informations :\nMonstre = M\nMur = #\nPiege = T\n\nVoici la carte ---->");
+		ligne = 12;
+		colonne = 12;
+		this.map = new char[ligne][colonne];
+
+		for (int i = 0; i < ligne; i++) {
+			for (int j = 0; j < colonne; j++) {
+				this.map[i][j] = 'X';
+			}
+		}
+		affichage();
+		
+	}
+	
+	public void  addPersonnage(char personnageLetter) {
+		while(true) {
+			a = rand.nextInt(max - min) + min;
+			b = rand.nextInt(max - min) + min;
+			System.out.println("Ajouter uun personnage");
+			if(this.map[a][b]=='X') {
+				this.map[a][b]=personnageLetter;
+				break;
+			}
+			
+		}
+		
+	}
 
 	// affichage
 	public void affichage() {
@@ -46,6 +75,18 @@ public class Map {
 			}
 			System.out.println(" ");
 		}
+	}
+	
+	public String getAffichage() {
+		String t="";
+		for (int i = 0; i < ligne; i++) {
+			for (int j = 0; j < colonne; j++) {
+				t=t+" " + this.map[i][j];
+			}
+			t=t+"\n";
+		}
+		return t;
+		
 	}
 
 	// placer un objet
@@ -106,6 +147,9 @@ public class Map {
 				b = false;
 			}
 		}
+	}
+	public void multiPlayer() {
+	System.out.println(map);
 	}
 
 	/*

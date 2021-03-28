@@ -4,6 +4,7 @@ public class Personnage {
 	//Attributs
 	private int pv;
 	private int potion;
+	private char avatar;
 	private String name;
 	Scanner scp = new Scanner(System.in);
 
@@ -14,6 +15,13 @@ public class Personnage {
 		System.out.println("Veuillez entrer votre nom : ");
 		name = scp.next();
 	}
+	//Constructeur mutlijoeur
+	public Personnage(char avatar) {
+		pv = 20;
+		potion = 1;
+		this.setAvatar(avatar);
+	}
+
 
 	//getter et setteur
 	public String getName() {
@@ -75,5 +83,11 @@ public class Personnage {
 			System.out.println("Vous êtes tombés sur un piège : -"+pv+ "PV");
 			pv -=pv;
 		}
+	}
+	public char getAvatar() {
+		return avatar;
+	}
+	public void setAvatar(char avatar) {
+		this.avatar = avatar;
 	}
 }
