@@ -16,7 +16,7 @@ public class Map {
 	int b = rand.nextInt(max - min) + min;
 
 	// constructeur
-	public Map() { // Nous nous sommes aidé de cette vidéo--> https://youtu.be/QVXM9YeO7rw
+	public Map() { // Nous nous sommes aidï¿½ de cette vidï¿½o--> https://youtu.be/QVXM9YeO7rw
 		System.out.println("Informations :\nMonstre = M\nMur = #\nPiege = T\n\nVoici la carte ---->");
 		ligne = 12;
 		colonne = 12;
@@ -90,7 +90,7 @@ public class Map {
 	}
 
 	// placer un objet
-	public void objet(int a, int b, char c) { // a etant les lignes et b les colonnes
+	public void objet(int a, int b, char c) { // a= lignes et b=colonnes
 		a -= 1;
 		b -= 1;
 		if (a < 0 || b < 0 || a > ligne || b > colonne) {
@@ -100,8 +100,8 @@ public class Map {
 			if (map[a][b] == 'X' || map[a][b] == ' ') {
 				map[a][b] = c;
 			} else {
-				System.out.println("Attention, l'emplacement est déja pris à la " + (a + 1) + "ème ligne et la "
-						+ (b + 1) + "ème colonne");
+				System.out.println("Attention, l'emplacement est dï¿½ja pris ï¿½ la " + (a + 1) + "ï¿½me ligne et la "
+						+ (b + 1) + "ï¿½me colonne");
 			}
 		}
 	}
@@ -120,12 +120,12 @@ public class Map {
 				trap.add(posTrap);
 			}
 		}
-		// penser à retirer ce for
+		// penser ï¿½ retirer ce for
 		for (String elem : trap) {
 			System.out.print("[" + elem + "]");
 		}
 		int nbrpieges = trap.size();
-		System.out.println("Attention, " + nbrpieges + " pièges sont cachés dans le donjon...");
+		System.out.println("Attention, " + nbrpieges + " piï¿½ges sont cachï¿½s dans le donjon...");
 	}
 
 	// la partie
@@ -141,7 +141,7 @@ public class Map {
 					break;
 				} 
 				if (map[1][1] == 'O'){
-					System.out.println("Vous avez réussi à sortir du Donjon !\nVICTOIRE!!!");
+					System.out.println("Vous avez rï¿½ussi ï¿½ sortir du Donjon !\nVICTOIRE!!!");
 					break;
 				}
 				b = false;
@@ -169,22 +169,20 @@ public class Map {
 	 * carte, (z+s), (d+q)); } carte.affichage(); }
 	 */
 
-	// On vas utiliser une seule fonction pour haut bas gauche, on ajoute les
-	// argument du foncton a et b, a pour dire l'axe haut et bas, et b pour l'axe
-	// gauche et droite :
+	// On vas utiliser une seule fonction pour le deplacement, on ajoute les
+	// argument de la foncton a et b, a pour dire l'axe haut et bas, et b pour l'axe gauche et droite :
 
 	public void deplacer(Personnage perso, Map carte, int a, int b) {
 		char pers;
 
-		// cette variable est vrais quand la position du perso est trouver dans le map
+		// cette variable est vrais quand la position du perso est trouver dans la map
 		boolean positionPersoTrouver = false;
 		for (int i = 0; i < ligne; i++) {
 			for (int j = 0; j < colonne; j++) {
 				if (map[i][j] == 'O') {
 					positionPersoTrouver = true;
 
-					// on test pour i et j s'il egal 0 pour dire que le jouer est en dehors du
-					// terrain
+					// on test pour i et j si il est egal a 0 pour dire que le jouer est en dehors du terrain
 					if ((i + a) >= 0 && (j + b) >= 0 && (i + a) < 12 && (j + b) < 12) {
 
 						pers = map[i][j];
@@ -193,14 +191,11 @@ public class Map {
 						String posJoueur = String.valueOf(i) + String.valueOf(j);
 
 						Iterator<String> it = trap.iterator();
-						// y est vrai tant que la liste n'est pas parcourue
-						// entièrement
-						// z est vrai tant que la position du joueur n'est pas
-						// celle d'un piège
+						// y est vrai tant que la liste n'est pas parcourue entiï¿½rement
+						// z est vrai tant que la position du joueur n'est pas  celle d'un piï¿½ge
 						boolean z = true;
 						String nxt;
-						// on a pas besoin la variable y pour tester s'il y le piège n'est pas encore
-						// parcourou
+						// on a pas besoin de la variable y pour tester si le piï¿½ge n'est pas encore parcourou
 						while (it.hasNext() && z) {
 
 							nxt = it.next();
@@ -218,20 +213,17 @@ public class Map {
 						}
 
 					} else {
-						System.err.println("Vous voulez vous déplacer en dehors de la carte !");
+						System.err.println("Vous voulez vous dï¿½placer en dehors de la carte !");
 					}
-					// on a pas besoin de parcourir les reste du map quand on a trouver la position
-					// du jouer
+					// on a pas besoin de parcourir le reste de la map quand on a trouver la position du jouer
 
 				}
-				// quand on a trouver la position du persone on ne vas plus parcourir tous les
-				// map
+				// quand on a trouver la position du persone on ne vas plus parcourir toutes la map
 				if (positionPersoTrouver) {
 					break;
 				}
 			}
-			// quand on a trouver la position du persone on ne vas plus parcourir tous les
-			// map
+			// quand on a trouver la position du personage on ne vas plus parcourir toute la map
 			if (positionPersoTrouver) {
 				break;
 			}
@@ -259,7 +251,7 @@ public class Map {
 			deplacer(perso, carte, +1, 0);
 			carte.affichage();
 		} else if (a.equals("d")) {
-			// deplacement à droit
+			// deplacement ï¿½ droit
 			deplacer(perso, carte, 0, 1);
 			carte.affichage();
 		} else if (a.equals("e")) {
