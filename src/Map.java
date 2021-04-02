@@ -36,6 +36,7 @@ public class Map {
 			map[a][b] = 'O';
 		}
 		affichage();
+		casesPieges();
 	}
 
 	// constructeur surchage pour multiplayer
@@ -51,6 +52,29 @@ public class Map {
 			}
 		}
 		affichage();
+		
+	}
+
+	public void casesPieges() {
+		int p = 1;
+
+		while (p <= 15) {
+			int alea = rand.nextInt(max - min) + min;
+			int aleadeux = rand.nextInt(max - min) + min;
+			if ((alea != a && aleadeux != b) && (alea != 1 && aleadeux != 1)) {
+				p += 1;
+				String.valueOf(alea);
+				String.valueOf(aleadeux);
+				String posTrap = String.valueOf(alea) + String.valueOf(aleadeux);
+				trap.add(posTrap);
+			}
+		}
+		// penser à retirer ce for ?????
+		for (String elem : trap) {
+			System.out.print("[" + elem + "]");
+		}
+		int nbrpieges = trap.size();
+		System.out.println("Attention, " + nbrpieges + " pièges sont cachés dans le donjon...");
 
 	}
 
@@ -105,28 +129,6 @@ public class Map {
 						+ (b + 1) + " ème colonne");
 			}
 		}
-	}
-
-	public void casesPieges(Personnage perso, Map carte) {
-		int p = 1;
-
-		while (p <= 15) {
-			int alea = rand.nextInt(max - min) + min;
-			int aleadeux = rand.nextInt(max - min) + min;
-			if ((alea != a && aleadeux != b) && (alea != 1 && aleadeux != 1)) {
-				p += 1;
-				String.valueOf(alea);
-				String.valueOf(aleadeux);
-				String posTrap = String.valueOf(alea) + String.valueOf(aleadeux);
-				trap.add(posTrap);
-			}
-		}
-		// penser à retirer ce for ?????
-		for (String elem : trap) {
-			System.out.print("[" + elem + "]");
-		}
-		int nbrpieges = trap.size();
-		System.out.println("Attention, " + nbrpieges + " pièges sont cachés dans le donjon...");
 	}
 
 	// la partie
@@ -194,13 +196,15 @@ public class Map {
 						map[i + a][j + b] = pers;
 						String posJoueur = String.valueOf(i) + String.valueOf(j);
 
+						// perso sur piège ou pas
+
+						System.out.println(trap);
 						Iterator<String> it = trap.iterator();
-						// y est vrai tant que la liste n'est pas parcourue entièrement
+
 						// z est vrai tant que la position du joueur n'est pas celle d'un piège
 						boolean z = true;
 						String nxt;
-						// on n'a pas besoin de la variable y pour tester si le piège n'est pas encore
-						// parcouru
+
 						while (it.hasNext() && z) {
 
 							nxt = it.next();
