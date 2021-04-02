@@ -16,7 +16,7 @@ public class Map {
 	int b = rand.nextInt(max - min) + min;
 
 	// constructeur
-	public Map() { // Nous nous sommes aidï¿½ de cette vidï¿½o--> https://youtu.be/QVXM9YeO7rw
+	public Map() { // Nous nous sommes aidés de cette vidéo--> https://youtu.be/QVXM9YeO7rw
 		System.out.println("Informations :\nMonstre = M\nMur = #\nPiege = T\n\nVoici la carte ---->");
 		ligne = 12;
 		colonne = 12;
@@ -38,7 +38,7 @@ public class Map {
 		affichage();
 	}
 
-	// constructeur surchage pour multiplateyer
+	// constructeur surchage pour multiplayer
 	public Map(Boolean multiplayer) {
 		System.out.println("Informations :\nMonstre = M\nMur = #\nPiege = T\n\nVoici la carte ---->");
 		ligne = 12;
@@ -58,7 +58,7 @@ public class Map {
 		while (true) {
 			a = rand.nextInt(max - min) + min;
 			b = rand.nextInt(max - min) + min;
-			System.out.println("Ajouter uun personnage");
+			System.out.println("Ajouter un personnage");
 			if (this.map[a][b] == 'X') {
 				this.map[a][b] = personnageLetter;
 				break;
@@ -185,7 +185,7 @@ public class Map {
 				if (map[i][j] == 'O') {
 					positionPersoTrouver = true;
 
-					// on test pour i et j si égal à 0 pour dire que le jouer est en dehors du
+					// on test pour i et j si égal à 0 pour dire que le joueur est en dehors du
 					// terrain
 					if ((i + a) >= 0 && (j + b) >= 0 && (i + a) < 12 && (j + b) < 12) {
 
@@ -218,19 +218,19 @@ public class Map {
 						}
 
 					} else {
-						System.err.println("Vous voulez vous dï¿½placer en dehors de la carte !");
+						System.err.println("Vous voulez vous déplacer en dehors de la carte !");
 					}
 					// pas besoin de parcourir le reste de la map quand on a trouvé la position du
 					// joueur
 
 				}
-				// quand on a trouver la position du personnage on ne va plus parcourir toute la
+				// quand on a trouvé la position du personnage on ne va plus parcourir toute la
 				// map
 				if (positionPersoTrouver) {
 					break;
 				}
 			}
-			// quand on a trouvé la position du personage on ne va plus parcourir toute la
+			// quand on a trouvé la position du personnage on ne va plus parcourir toute la
 			// map
 			if (positionPersoTrouver) {
 				break;
