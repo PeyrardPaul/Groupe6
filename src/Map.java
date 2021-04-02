@@ -37,7 +37,8 @@ public class Map {
 		}
 		affichage();
 	}
-	// constructeur surchage pour  multiplateyer
+
+	// constructeur surchage pour multiplateyer
 	public Map(Boolean multiplayer) {
 		System.out.println("Informations :\nMonstre = M\nMur = #\nPiege = T\n\nVoici la carte ---->");
 		ligne = 12;
@@ -50,21 +51,21 @@ public class Map {
 			}
 		}
 		affichage();
-		
+
 	}
-	
-	public void  addPersonnage(char personnageLetter) {
-		while(true) {
+
+	public void addPersonnage(char personnageLetter) {
+		while (true) {
 			a = rand.nextInt(max - min) + min;
 			b = rand.nextInt(max - min) + min;
 			System.out.println("Ajouter uun personnage");
-			if(this.map[a][b]=='X') {
-				this.map[a][b]=personnageLetter;
+			if (this.map[a][b] == 'X') {
+				this.map[a][b] = personnageLetter;
 				break;
 			}
-			
+
 		}
-		
+
 	}
 
 	// affichage
@@ -76,17 +77,17 @@ public class Map {
 			System.out.println(" ");
 		}
 	}
-	
+
 	public String getAffichage() {
-		String t="";
+		String t = "";
 		for (int i = 0; i < ligne; i++) {
 			for (int j = 0; j < colonne; j++) {
-				t=t+" " + this.map[i][j];
+				t = t + " " + this.map[i][j];
 			}
-			t=t+"\n";
+			t = t + "\n";
 		}
 		return t;
-		
+
 	}
 
 	// placer un objet
@@ -100,8 +101,8 @@ public class Map {
 			if (map[a][b] == 'X' || map[a][b] == ' ') {
 				map[a][b] = c;
 			} else {
-				System.out.println("Attention, l'emplacement est dï¿½ja pris ï¿½ la " + (a + 1) + "ï¿½me ligne et la "
-						+ (b + 1) + "ï¿½me colonne");
+				System.out.println("Attention, l'emplacement est déjà pris à la " + (a + 1) + " ème ligne et la "
+						+ (b + 1) + " ème colonne");
 			}
 		}
 	}
@@ -120,12 +121,12 @@ public class Map {
 				trap.add(posTrap);
 			}
 		}
-		// penser ï¿½ retirer ce for
+		// penser à retirer ce for ?????
 		for (String elem : trap) {
 			System.out.print("[" + elem + "]");
 		}
 		int nbrpieges = trap.size();
-		System.out.println("Attention, " + nbrpieges + " piï¿½ges sont cachï¿½s dans le donjon...");
+		System.out.println("Attention, " + nbrpieges + " pièges sont cachés dans le donjon...");
 	}
 
 	// la partie
@@ -139,17 +140,18 @@ public class Map {
 				if (perso.getPv() == 0) {
 					System.out.println("VOUS ETES MORT !!!");
 					break;
-				} 
-				if (map[1][1] == 'O'){
-					System.out.println("Vous avez rï¿½ussi ï¿½ sortir du Donjon !\nVICTOIRE!!!");
+				}
+				if (map[1][1] == 'O') {
+					System.out.println("Vous avez réussi à sortir du Donjon !\nVICTOIRE!!!");
 					break;
 				}
 				b = false;
 			}
 		}
 	}
+
 	public void multiPlayer() {
-	System.out.println(map);
+		System.out.println(map);
 	}
 
 	/*
@@ -169,20 +171,22 @@ public class Map {
 	 * carte, (z+s), (d+q)); } carte.affichage(); }
 	 */
 
-	// On vas utiliser une seule fonction pour le deplacement, on ajoute les
-	// argument de la foncton a et b, a pour dire l'axe haut et bas, et b pour l'axe gauche et droite :
+	// On va utiliser une seule fonction pour le deplacement, on ajoute les
+	// arguments de la foncton a et b, a pour dire l'axe haut et bas, et b pour
+	// l'axe gauche et droite :
 
 	public void deplacer(Personnage perso, Map carte, int a, int b) {
 		char pers;
 
-		// cette variable est vrais quand la position du perso est trouver dans la map
+		// cette variable est vraie quand la position du perso est trouver dans la map
 		boolean positionPersoTrouver = false;
 		for (int i = 0; i < ligne; i++) {
 			for (int j = 0; j < colonne; j++) {
 				if (map[i][j] == 'O') {
 					positionPersoTrouver = true;
 
-					// on test pour i et j si il est egal a 0 pour dire que le jouer est en dehors du terrain
+					// on test pour i et j si égal à 0 pour dire que le jouer est en dehors du
+					// terrain
 					if ((i + a) >= 0 && (j + b) >= 0 && (i + a) < 12 && (j + b) < 12) {
 
 						pers = map[i][j];
@@ -191,11 +195,12 @@ public class Map {
 						String posJoueur = String.valueOf(i) + String.valueOf(j);
 
 						Iterator<String> it = trap.iterator();
-						// y est vrai tant que la liste n'est pas parcourue entiï¿½rement
-						// z est vrai tant que la position du joueur n'est pas  celle d'un piï¿½ge
+						// y est vrai tant que la liste n'est pas parcourue entièrement
+						// z est vrai tant que la position du joueur n'est pas celle d'un piège
 						boolean z = true;
 						String nxt;
-						// on a pas besoin de la variable y pour tester si le piï¿½ge n'est pas encore parcourou
+						// on n'a pas besoin de la variable y pour tester si le piège n'est pas encore
+						// parcouru
 						while (it.hasNext() && z) {
 
 							nxt = it.next();
@@ -215,15 +220,18 @@ public class Map {
 					} else {
 						System.err.println("Vous voulez vous dï¿½placer en dehors de la carte !");
 					}
-					// on a pas besoin de parcourir le reste de la map quand on a trouver la position du jouer
+					// pas besoin de parcourir le reste de la map quand on a trouvé la position du
+					// joueur
 
 				}
-				// quand on a trouver la position du persone on ne vas plus parcourir toutes la map
+				// quand on a trouver la position du personnage on ne va plus parcourir toute la
+				// map
 				if (positionPersoTrouver) {
 					break;
 				}
 			}
-			// quand on a trouver la position du personage on ne vas plus parcourir toute la map
+			// quand on a trouvé la position du personage on ne va plus parcourir toute la
+			// map
 			if (positionPersoTrouver) {
 				break;
 			}
@@ -243,7 +251,7 @@ public class Map {
 			deplacer(perso, carte, -1, 0);
 			carte.affichage();
 		} else if (a.equals("q")) {
-			// deplacement gache
+			// deplacement gauche
 			deplacer(perso, carte, 0, -1);
 			carte.affichage();
 		} else if (a.equals("s")) {
@@ -251,7 +259,7 @@ public class Map {
 			deplacer(perso, carte, +1, 0);
 			carte.affichage();
 		} else if (a.equals("d")) {
-			// deplacement ï¿½ droit
+			// deplacement droite
 			deplacer(perso, carte, 0, 1);
 			carte.affichage();
 		} else if (a.equals("e")) {
@@ -260,7 +268,7 @@ public class Map {
 
 		} else {
 			carte.affichage();
-			System.err.println("Vous n'avez pas saisi une bonne lettre");
+			System.err.println("Vous n'avez pas saisi lettre valide");
 		}
 	}
 }
