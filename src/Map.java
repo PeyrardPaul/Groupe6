@@ -70,9 +70,9 @@ public class Map {
 			}
 		}
 		// penser à retirer ce for ?????
-		for (String elem : trap) {
+		/*for (String elem : trap) {
 			System.out.print("[" + elem + "]");
-		}
+		}*/
 		int nbrpieges = trap.size();
 		System.out.println("Attention, " + nbrpieges + " pièges sont cachés dans le donjon...");
 
@@ -82,7 +82,7 @@ public class Map {
 		while (true) {
 			a = rand.nextInt(max - min) + min;
 			b = rand.nextInt(max - min) + min;
-			System.out.println("Ajouter un personnage");
+			System.out.println("Ajout du personnage "+personnageLetter+":");
 			if (this.map[a][b] == 'X') {
 				this.map[a][b] = personnageLetter;
 				break;
@@ -132,18 +132,17 @@ public class Map {
 	}
 
 	// la partie
-	public void jeu(Personnage perso, Map carte) {
+	public void jeu(Personnage perso, Map carte, char personnageLetter) {
 		boolean b;
 		while (true) {
-			System.out.println(map[1][1]);
 			System.out.println(perso);
-			saisieClavier(perso, carte);
-			if ((map[1][1] == 'O') || (perso.getPv() == 0)) {
+			saisieClavier(perso, carte, personnageLetter);
+			if ((map[1][1] == personnageLetter) || (perso.getPv() == 0)) {
 				if (perso.getPv() == 0) {
 					System.out.println("VOUS ETES MORT !!!");
 					break;
 				}
-				if (map[1][1] == 'O') {
+				if (map[1][1] == personnageLetter) {
 					System.out.println("Vous avez réussi à sortir du Donjon !\nVICTOIRE!!!");
 					break;
 				}
@@ -177,14 +176,14 @@ public class Map {
 	// arguments de la foncton a et b, a pour dire l'axe haut et bas, et b pour
 	// l'axe gauche et droite :
 
-	public void deplacer(Personnage perso, Map carte, int a, int b) {
+	public void deplacer(Personnage perso, Map carte, int a, int b, char personnageLetter) {
 		char pers;
 
 		// cette variable est vraie quand la position du perso est trouver dans la map
 		boolean positionPersoTrouver = false;
 		for (int i = 0; i < ligne; i++) {
 			for (int j = 0; j < colonne; j++) {
-				if (map[i][j] == 'O') {
+				if (map[i][j] == personnageLetter) {
 					positionPersoTrouver = true;
 
 					// on test pour i et j si égal à 0 pour dire que le joueur est en dehors du
@@ -198,7 +197,6 @@ public class Map {
 
 						// perso sur piège ou pas
 
-						System.out.println(trap);
 						Iterator<String> it = trap.iterator();
 
 						// z est vrai tant que la position du joueur n'est pas celle d'un piège
@@ -242,7 +240,7 @@ public class Map {
 		}
 	}
 
-	public void saisieClavier(Personnage perso, Map carte) {
+	public void saisieClavier(Personnage perso, Map carte, char personnageLetter) {
 		System.out.println("Dans quelle direction voulez vous aller?");
 		System.out.println("z = vers le haut");
 		System.out.println("s = vers le bas");
@@ -252,19 +250,19 @@ public class Map {
 		String a = sc.next();
 		if (a.equals("z")) {
 			// deplacement vers le haut
-			deplacer(perso, carte, -1, 0);
+			deplacer(perso, carte, -1, 0, personnageLetter);
 			carte.affichage();
 		} else if (a.equals("q")) {
 			// deplacement gauche
-			deplacer(perso, carte, 0, -1);
+			deplacer(perso, carte, 0, -1, personnageLetter);
 			carte.affichage();
 		} else if (a.equals("s")) {
 			// deplacement bas
-			deplacer(perso, carte, +1, 0);
+			deplacer(perso, carte, +1, 0, personnageLetter);
 			carte.affichage();
 		} else if (a.equals("d")) {
 			// deplacement droite
-			deplacer(perso, carte, 0, 1);
+			deplacer(perso, carte, 0, 1, personnageLetter);
 			carte.affichage();
 		} else if (a.equals("e")) {
 			perso.potion();

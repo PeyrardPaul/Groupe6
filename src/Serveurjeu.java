@@ -12,8 +12,11 @@ public class Serveurjeu extends Thread {
 	private PrintStream out;
 	private BufferedReader in;
 	private Map carte;
-	private static ArrayList<Personnage> jouers = new ArrayList<Personnage>();;
-	private static char[] avatar = new char[] { 'A', 'B', 'C' };;
+	private static ArrayList<Personnage> joueurs = new ArrayList<Personnage>();;
+	private static char[] avatar = new char[] { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J' };;
+	//char myavatar = 'X';
+	//Personnage personne = new Personnage(myavatar);
+	
 
 	public Serveurjeu(Socket socket, Map map) {
 		try {
@@ -37,21 +40,27 @@ public class Serveurjeu extends Thread {
 			try {
 
 				String tmp = "";
+				boolean b = true;
 				if (step == 0) {
-					tmp = in.readLine();
-					if (tmp.equals("jeu")) {
-						this.out.println("jeu");
-						step = 1;
+					while (b == true) {
+						System.out.println("Entrez 'jeu' pour commencer la partie");
+						tmp = in.readLine();
+						if (tmp.equals("jeu")) {
+							this.out.println("jeu");
+							step = 1;
+							System.out.println("La partie commence :");
+							b = false;
 
-					} else {
-						this.out.println("Qu'est-ce que vous faites là ? ");
+						} else {
+							this.out.println("Vous n'avez pas saisi 'jeu' ");
+						}
+						;
 					}
-					;
 				}
+				
 				if (step == 1) {
-					this.out.println("Entrez votre nom");
-					this.out.flush();
-					tmp = in.readLine();
+					//this.out.flush();
+					//tmp = in.readLine();
 					this.out.flush();
 					char myavatar = 'X';
 					for (int i = 0; i < avatar.length; i++) {
@@ -59,25 +68,26 @@ public class Serveurjeu extends Thread {
 						if (avatar[i] != 'X') {
 							myavatar = avatar[i];
 							this.avatar[i] = 'X';
-							System.out.println(this.avatar[i]);
+							//System.out.println(this.avatar[i]);
 							break;
 						}
+						
 					}
 
 					Personnage personne = new Personnage(myavatar);
-					this.jouers.add(personne);
+					this.joueurs.add(personne);
 					carte.addPersonnage(personne.getAvatar());
 					this.out.println(personne.getAvatar());
 					step = 2;
-					this.out.println(carte.getAffichage());
+					//this.out.println(carte.getAffichage());
+					carte.affichage();
 					this.out.flush();
-
+					carte.jeu(personne, carte, personne.getAvatar());
 				}
 				if (step == 2) {
 					// la partie a commencé, c'est ici qu'on va coder les action des joueurs durant
 					// le jeu;
 					tmp = in.readLine();
-
 				}
 
 				/*

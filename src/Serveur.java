@@ -10,7 +10,7 @@ public class Serveur {
 		Map carte = new Map(true);
 
 		try {
-			System.out.println("Demarrage de serveur ...");
+			System.out.println("Demarrage du serveur ...");
 			serverSocket = new ServerSocket(PORT);
 
 		} catch (IOException e) {
@@ -23,9 +23,9 @@ public class Serveur {
 
 			Socket socket;
 			try {
-				System.out.println("En attente du joueur");
+				System.out.println("En attente d'un joueur");
 				socket = serverSocket.accept();
-				System.out.println("Un joueur est connecté");
+				System.out.println("Un joueur s'est connecté");
 				Serveurjeu newPlayer = new Serveurjeu(socket, carte);
 				newPlayer.start();
 			} catch (IOException e) {
