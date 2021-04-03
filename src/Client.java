@@ -47,19 +47,16 @@ public class Client {
         			//this.out.println(line);
         			//tmp=in.readLine();	
         			System.out.println("Bienvenue, vous êtes '"+tmp+"' dans le jeu");
-        			while(true) {
+        			/*while(true) {
         				tmp=in.readLine();	
             			System.out.println(tmp);
             			if(tmp=="-1") {
             				break;
             			}
             			
-        			}
-        			step=1;
-        			
-        			
+        			}*/
+        			step=1;		
         		}
-        		
 			
 				
 				

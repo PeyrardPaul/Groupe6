@@ -4,6 +4,7 @@ import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.PrintStream;
+import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 
@@ -13,7 +14,7 @@ public class Serveurjeu extends Thread {
 	private BufferedReader in;
 	private Map carte;
 	private static ArrayList<Personnage> joueurs = new ArrayList<Personnage>();;
-	private static char[] avatar = new char[] { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J' };;
+	private static char[] avatar = new char[] { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'H' };;
 	//char myavatar = 'X';
 	//Personnage personne = new Personnage(myavatar);
 	
@@ -68,7 +69,6 @@ public class Serveurjeu extends Thread {
 						if (avatar[i] != 'X') {
 							myavatar = avatar[i];
 							this.avatar[i] = 'X';
-							//System.out.println(this.avatar[i]);
 							break;
 						}
 						
@@ -82,7 +82,6 @@ public class Serveurjeu extends Thread {
 					//this.out.println(carte.getAffichage());
 					carte.affichage();
 					this.out.flush();
-					carte.jeu(personne, carte, personne.getAvatar());
 				}
 				if (step == 2) {
 					// la partie a commencé, c'est ici qu'on va coder les action des joueurs durant

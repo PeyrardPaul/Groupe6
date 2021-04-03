@@ -41,7 +41,7 @@ public class Map {
 
 	// constructeur surchage pour multiplayer
 	public Map(Boolean multiplayer) {
-		System.out.println("Informations :\nMonstre = M\nMur = #\nPiege = T\n\nVoici la carte ---->");
+		//System.out.println("Informations :\nMonstre = M\nMur = #\nPiege = T\n\nVoici la carte ---->");
 		ligne = 12;
 		colonne = 12;
 		this.map = new char[ligne][colonne];
@@ -51,7 +51,7 @@ public class Map {
 				this.map[i][j] = 'X';
 			}
 		}
-		affichage();
+		//affichage();
 		
 	}
 
