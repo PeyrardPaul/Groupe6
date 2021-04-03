@@ -136,7 +136,7 @@ public class Map {
 		boolean b;
 		while (true) {
 			System.out.println(perso);
-			saisieClavier(perso, carte, personnageLetter);
+			//saisieClavier(perso, carte, personnageLetter);
 			if ((map[1][1] == personnageLetter) || (perso.getPv() == 0)) {
 				if (perso.getPv() == 0) {
 					System.out.println("VOUS ETES MORT !!!");
@@ -240,14 +240,13 @@ public class Map {
 		}
 	}
 
-	public void saisieClavier(Personnage perso, Map carte, char personnageLetter) {
-		System.out.println("Dans quelle direction voulez vous aller?");
+	public void saisieClavier(Personnage perso, Map carte, char personnageLetter, String a) {
+		/*System.out.println("Dans quelle direction voulez vous aller?");
 		System.out.println("z = vers le haut");
 		System.out.println("s = vers le bas");
 		System.out.println("q = vers la gauche");
 		System.out.println("d = vers la droite");
-		System.out.println("e = prendre une potion");
-		String a = sc.next();
+		System.out.println("e = prendre une potion");*/
 		if (a.equals("z")) {
 			// deplacement vers le haut
 			deplacer(perso, carte, -1, 0, personnageLetter);

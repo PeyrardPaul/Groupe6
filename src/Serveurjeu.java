@@ -87,6 +87,7 @@ public class Serveurjeu extends Thread {
 					// la partie a commencé, c'est ici qu'on va coder les action des joueurs durant
 					// le jeu;
 					tmp = in.readLine();
+					System.out.println(tmp);
 				}
 
 				/*

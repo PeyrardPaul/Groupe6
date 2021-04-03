@@ -10,6 +10,7 @@ public class Client {
     private PrintStream out = null;
     private BufferedReader in =null;
     private Socket socket;
+    private Map carte;
     //private char moi;
     public Client() {
         try {
@@ -55,10 +56,21 @@ public class Client {
             			}
             			
         			}*/
-        			step=1;		
+        			step=2;		
         		}
 			
-				
+				if (step ==2) {
+					Personnage perso = new Personnage (tmp.charAt(0));
+					System.out.println("Dans quelle direction voulez vous aller?");
+					System.out.println("z = vers le haut");
+					System.out.println("s = vers le bas");
+					System.out.println("q = vers la gauche");
+					System.out.println("d = vers la droite");
+					System.out.println("e = prendre une potion");
+					String a = sc.next();
+					this.out.println(a);
+					step = 3;
+				}
 				
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
