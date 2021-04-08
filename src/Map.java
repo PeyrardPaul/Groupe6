@@ -131,6 +131,14 @@ public class Map {
 		}
 	}
 
+	public char[][] getMap() {
+		return map;
+	}
+
+	public void setMap(char[][] map) {
+		this.map = map;
+	}
+
 	// la partie
 	public void jeu(Personnage perso, Map carte, char personnageLetter) {
 		boolean b;

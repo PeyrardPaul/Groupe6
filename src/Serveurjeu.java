@@ -8,17 +8,20 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Serveurjeu extends Thread {
 	private Socket socket;
 	private PrintWriter out;
 	private BufferedReader in;
 	private Map carte;
+	private char[][] map;
+	private Thread t;
 	private Serveur serveur;
 	private int numJoueur = 0;
 	private static ArrayList<Personnage> joueurs = new ArrayList<Personnage>();;
 	private static char[] avatar = new char[] { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'H' };;
-	//char myavatar = 'X';
+	char avatarRun = 'X';
 	
 
 	public Serveurjeu(Socket socket, Map map, Serveur serveur) {
@@ -32,8 +35,23 @@ public class Serveurjeu extends Thread {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
 		System.out.println("Vous êtes le joueur numéro "+numJoueur+" à s'être connecté au serveur !");
+		char myavatar = 'X';
+		for (int i = 0; i < avatar.length; i++) {
+
+			if (avatar[i] != 'X') {
+				myavatar = avatar[i];
+				this.avatar[i] = 'X';
+				break;
+			}
+		}
+		Personnage personne = new Personnage(myavatar);
+		this.joueurs.add(personne);
+		carte.addPersonnage(personne.getAvatar());
+		this.out.println(myavatar);
+		carte.affichage();
+		avatarRun = myavatar;
+		
 	}
 
 	public void run() {
@@ -41,10 +59,41 @@ public class Serveurjeu extends Thread {
 		// partie,
 		// step=1 ajout de joueurs dans la partie,
 		// step=2 la partie commence,
-		int step = 0;
+		String tmp = "";
 		while (true) {
-
 			try {
+				if (numJoueur == 3) {
+					Iterator<Personnage> it = joueurs.iterator();
+					while (it.hasNext()) {
+							Personnage p = it.next();
+							System.out.println(p.getAvatar());
+							this.out.println(p.getAvatar());
+							this.out.flush();
+							tmp = in.readLine();
+							System.out.println("Au joueur "+p.getAvatar()+" de jouer :");
+							carte.saisieClavier(p, carte, p.getAvatar(), tmp);
+							if (p.getPv() == 0) {
+								System.err.println("Vous êtes MORT !!!");
+							}
+					}
+				}
+			}catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			}
+		}
+		/* Tant que vrai { 
+			 * tant que ((le perso A ou que perso B n'a pas atteint la ligne d'arrivée) ou que (les deux sont morts)) {
+			 * parcourir tabJoueurs de serveur {
+			 * si dans tabjoueurs le numJoueur est 1 {
+			 * faire methode map saisieclavier }
+			 * si dans tabjoueurs le numJoueur est 2 {
+			 * faire methode map saisie clavier } etc...
+			 * }
+			 * } false;*/
+		/*int step = 0;
+		while (true) {
+				
 				String tmp = "";
 				boolean b = true;
 				if (step == 0) {
@@ -90,12 +139,12 @@ public class Serveurjeu extends Thread {
 				if (step == 2) {
 					// la partie a commencé, c'est ici qu'on va coder les action des joueurs durant
 					// le jeu;
-					/*tmp = in.readLine();
+					tmp = in.readLine();
 					carte.saisieClavier(personne, carte, 'A', tmp); en sachant que pour chaque numJoueur il y a un client, pour chaque client il y a un char et pour chaque client il y a un personnage a 
-					appelé différent */
+					appelé différent 
 					
 					
-					/* Tant que vrai { 
+					 Tant que vrai { 
 					 * tant que ((le perso A ou que perso B n'a pas atteint la ligne d'arrivée) ou que (les deux sont morts)) {
 					 * parcourir tabJoueurs de serveur {
 					 * si dans tabjoueurs le numJoueur est 1 {
@@ -104,23 +153,19 @@ public class Serveurjeu extends Thread {
 					 * faire methode map saisie clavier } etc...
 					 * }
 					 * } false;
-					 */
+					 
 				}
 				
 
-				/*
+				
 				 * //on termine le jeu if(tmp.equals("quitter")) { this.socket.close(); } if
 				 * (tmp.equals("jeu")) { //Personnage perso = new Personnage(); //Map carte =
 				 * new Map(); //carte.jeu(perso, carte);
 				 * 
 				 * } else { out.println("Vous n'avez pas lancé la partie"); }
-				 */
-
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+				 
+				*/
 		}
 
 	}
 
-}

@@ -51,7 +51,7 @@ public class Personnage {
 	// methodes
 
 	public String toString() {
-		return "Vos caractéristiques :\nNombre de PV: " + pv + "\nNombre de potion: " + potion + "\n----------------";
+		return "Vos caractéristiques :\nNombre de PV: " + pv + "\nNombre de potion: " + potion +  " et votre nom: "+getAvatar()+"\n----------------";
 	}
 
 	public void potion() {

@@ -6,6 +6,7 @@ public class Serveur {
 	public static final int PORT = 6000;
 	private Vector tabJoueurs = new Vector(); // contiendra tous les flux de sortie vers les clients
 	private int nbJoueurs = 0;
+	private static int i = 0;
 
 	public static void main(String argv[]) throws UnknownHostException, IOException {
 		Serveur serveur = new Serveur();
@@ -24,7 +25,7 @@ public class Serveur {
 			System.exit(1);
 		}
 
-		while (true) {
+		while (i != 3) {
 
 			Socket socket;
 			try {
@@ -37,7 +38,12 @@ public class Serveur {
 				System.err.println("Une erreur est arrivée lorsqu'un joueur a tenté de se connecter... ");
 				System.err.println(e);
 			}
+			i += 1;
+			if (i == 3) {
+				System.out.println("Le nombre maximum de joueur est atteint, la partie peut commencer !!!");
+			}
 		}
+
 	}
 
 	synchronized public int addClient(PrintWriter out) {

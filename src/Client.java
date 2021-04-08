@@ -11,26 +11,49 @@ public class Client {
     private BufferedReader in =null;
     private Socket socket;
     private Map carte;
+    private int ident;
+    String tmp="";
     private static int id = 1;//exo 4
     //private char mi;
     public Client() {
         try {
-            socket = new Socket("127.0.0."+String.valueOf(id), 6000);
+        	ident = id;
+            socket = new Socket("127.0.0."+String.valueOf(ident), 6000);
             out= new PrintStream( socket.getOutputStream() );
             in= new BufferedReader(new InputStreamReader(socket.getInputStream()));
         } catch (IOException e) {
             e.printStackTrace();
         }
         id++;
+        try {
+			tmp = in.readLine();
+			System.out.println("Vous êtes le joueur "+tmp);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         // ATTENTION: Je veux changer d' ID à chaque fois que l'on crée un client pour pas que tout les clients aient les mêmes ID
         //Donc à chaque fois j'ajoute au dernier chiffre de l'id +1 (127.0.etc..), mais ça ne marche pas et le petit id reste égal à 1
     }
     
     public void loop() {
         Scanner sc = new Scanner(System.in);
-        String tmp="";
-        String line="";
-        int step=0;
+       try {
+    	   tmp = in.readLine();
+    	   System.out.println("Au joueur '"+tmp+"' de jouer :\n ------------");
+    	   System.out.println("Dans quelle direction voulez vous aller?");
+    	   System.out.println("z = vers le haut");
+    	   System.out.println("s = vers le bas");
+    	   System.out.println("q = vers la gauche");
+    	   System.out.println("d = vers la droite");
+    	   System.out.println("e = prendre une potion");
+    	   String a = sc.next();
+    	   this.out.println(a);
+       }catch(IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+        /*int step=0;
         while(true) {     
         	try {
         		if(step==0) {
@@ -52,14 +75,14 @@ public class Client {
         			//this.out.println(line);
         			//tmp=in.readLine();	
         			System.out.println("Bienvenue, vous êtes '"+tmp+"' dans le jeu");
-        			/*while(true) {
+        			while(true) {
         				tmp=in.readLine();	
             			System.out.println(tmp);
             			if(tmp=="-1") {
             				break;
             			}
             			
-        			}*/
+        			}
         			step=2;		
         		}
 			
@@ -79,12 +102,12 @@ public class Client {
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
-			}
+			}*/
         	
             
            
         }
-    }
+  
 
 
 
