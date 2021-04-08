@@ -173,13 +173,12 @@ public class Map {
 	 */
 
 	// On va utiliser une seule fonction pour le deplacement, on ajoute les
-	// arguments de la foncton a et b, a pour dire l'axe haut et bas, et b pour
-	// l'axe gauche et droite :
+	// arguments de la foncton a et b, a pour l'axe vertical, et b pour l'axe horizontal
 
 	public void deplacer(Personnage perso, Map carte, int a, int b, char personnageLetter) {
 		char pers;
 
-		// cette variable est vraie quand la position du perso est trouver dans la map
+		// cette variable est vraie quand la position du perso est trouvée dans la map
 		boolean positionPersoTrouver = false;
 		for (int i = 0; i < ligne; i++) {
 			for (int j = 0; j < colonne; j++) {
@@ -195,7 +194,7 @@ public class Map {
 						map[i + a][j + b] = pers;
 						String posJoueur = String.valueOf(i) + String.valueOf(j);
 
-						// perso sur piège ou pas
+						// perso sur piège ou pas 
 
 						Iterator<String> it = trap.iterator();
 
