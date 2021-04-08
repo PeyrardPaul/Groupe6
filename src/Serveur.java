@@ -1,8 +1,11 @@
 import java.io.*;
 import java.net.*;
+import java.util.Vector;
 
 public class Serveur {
 	public static final int PORT = 6000;
+	 private Vector tabJoueurs = new Vector(); // contiendra tous les flux de sortie vers les clients
+	 private int nbJoueurs=0; 
 
 	public Serveur() {
 		ServerSocket serverSocket = null;
@@ -35,6 +38,27 @@ public class Serveur {
 		}
 	}
 
+	synchronized public int addClient(PrintWriter out)
+	  {
+	    nbJoueurs++; // un client en plus ! ouaaaih
+	    tabJoueurs.addElement(out); // on ajoute le nouveau flux de sortie au tableau
+	    return tabJoueurs.size()-1; // on retourne le numéro du client ajouté (size-1)
+	  }
+
+	synchronized public void sendAll(String message,String sLast)
+	  {
+	    PrintWriter out; // déclaration d'une variable permettant l'envoi de texte vers le client
+	    for (int i = 0; i < tabJoueurs.size(); i++) // parcours de la table des connectés
+	    {
+	      out = (PrintWriter) tabJoueurs.elementAt(i); // extraction de l'élément courant (type PrintWriter)
+	      if (out != null) // sécurité, l'élément ne doit pas être vide
+	      {
+	          // écriture du texte passé en paramètre (et concaténation d'une string de fin de chaine si besoin)
+	        out.print(message+sLast);
+	        out.flush(); // envoi dans le flux de sortie
+	      }
+	    }
+	  }
 	
 	public static void main(String argv[]) throws UnknownHostException, IOException {
 		new Serveur();

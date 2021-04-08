@@ -86,8 +86,8 @@ public class Serveurjeu extends Thread {
 				if (step == 2) {
 					// la partie a commencé, c'est ici qu'on va coder les action des joueurs durant
 					// le jeu;
-					tmp = in.readLine();
-					System.out.println(tmp);
+					/*tmp = in.readLine();
+					System.out.println(tmp);*/
 				}
 
 				/*
