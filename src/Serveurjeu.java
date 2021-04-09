@@ -51,7 +51,6 @@ public class Serveurjeu extends Thread {
 		this.out.println(myavatar);
 		carte.affichage();
 		avatarRun = myavatar;
-		
 	}
 
 	public void run() {
@@ -60,11 +59,12 @@ public class Serveurjeu extends Thread {
 		// step=1 ajout de joueurs dans la partie,
 		// step=2 la partie commence,
 		String tmp = "";
+		
 		while (true) {
 			try {
-				if (numJoueur == 3) {
-					Iterator<Personnage> it = joueurs.iterator();
-					while (it.hasNext()) {
+					if (numJoueur == 2) {
+						Iterator<Personnage> it = joueurs.iterator();
+						while (it.hasNext()) {
 							Personnage p = it.next();
 							System.out.println(p.getAvatar());
 							this.out.println(p.getAvatar());
@@ -75,12 +75,13 @@ public class Serveurjeu extends Thread {
 							if (p.getPv() == 0) {
 								System.err.println("Vous êtes MORT !!!");
 							}
-					}
-				}
+					}}
+				
 			}catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			}
+		}
 		}
 		/* Tant que vrai { 
 			 * tant que ((le perso A ou que perso B n'a pas atteint la ligne d'arrivée) ou que (les deux sont morts)) {
@@ -167,5 +168,5 @@ public class Serveurjeu extends Thread {
 				*/
 		}
 
-	}
+	
 

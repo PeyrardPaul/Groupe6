@@ -1,10 +1,13 @@
 import java.io.*;
 import java.net.*;
+import java.util.ArrayList;
 import java.util.Vector;
 
 public class Serveur {
 	public static final int PORT = 6000;
-	private Vector tabJoueurs = new Vector(); // contiendra tous les flux de sortie vers les clients
+	private Vector tabJoueurs = new Vector();
+	// contiendra tous les flux de sortie vers les clients
+	//private ArrayList<Partie> nb_parties = new ArrayList<Partie>();;
 	private int nbJoueurs = 0;
 	private static int i = 0;
 
@@ -25,13 +28,13 @@ public class Serveur {
 			System.exit(1);
 		}
 
-		while (i != 3) {
+		while (true) {
 
 			Socket socket;
 			try {
-				System.out.println("En attente d'un joueur");
 				socket = serverSocket.accept();
 				System.out.println("Un joueur s'est connecté");
+				
 				Serveurjeu newPlayer = new Serveurjeu(socket, carte, serveur);
 				newPlayer.start();
 			} catch (IOException e) {

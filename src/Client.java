@@ -49,7 +49,7 @@ public class Client {
     	   System.out.println("e = prendre une potion");
     	   String a = sc.next();
     	   this.out.println(a);
-       }catch(IOException e1) {
+    	}catch(IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
