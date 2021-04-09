@@ -17,10 +17,11 @@ public class Serveurjeu extends Thread {
 	private Map carte;
 	private char[][] map;
 	private Thread t;
+	private Personnage pers;
 	private Serveur serveur;
 	private int numJoueur = 0;
 	private static ArrayList<Personnage> joueurs = new ArrayList<Personnage>();;
-	private static char[] avatar = new char[] { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'H' };;
+	private static char[] avatar = new char[] { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'};;
 	char avatarRun = 'X';
 	
 
@@ -35,34 +36,55 @@ public class Serveurjeu extends Thread {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		System.out.println("Vous êtes le joueur numéro "+numJoueur+" à s'être connecté au serveur !");
+		
 		char myavatar = 'X';
-		for (int i = 0; i < avatar.length; i++) {
+		int i = 0;
+		while (i < avatar.length) {
 
 			if (avatar[i] != 'X') {
 				myavatar = avatar[i];
 				this.avatar[i] = 'X';
+				/*if (myavatar == 'D') {
+					avatar[0] = 'A';
+					avatar[1] = 'B';
+					avatar[2] = 'C';
+					avatar[3] = 'D';
+					i = 0;
+				}*/
 				break;
-			}
+			}i++;
 		}
+		
 		Personnage personne = new Personnage(myavatar);
 		this.joueurs.add(personne);
+		pers = personne;
 		carte.addPersonnage(personne.getAvatar());
 		this.out.println(myavatar);
 		carte.affichage();
 		avatarRun = myavatar;
 	}
 
-	public void run() {
+	public void depla() {
+		Client c = new Client();
+		String tmp = "";
+		try {
+			this.out.println(avatarRun);
+			this.out.flush();
+			tmp = in.readLine();
+			carte.saisieClavier(pers, carte, avatarRun, tmp);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		// step=0 le joueur vient de se connecter il faut taper jeu pour lancer la
 		// partie,
 		// step=1 ajout de joueurs dans la partie,
 		// step=2 la partie commence,
-		String tmp = "";
+		/*String tmp = "";
 		
 		while (true) {
 			try {
 					if (numJoueur == 2) {
+						tmp = in.readLine();
 						Iterator<Personnage> it = joueurs.iterator();
 						while (it.hasNext()) {
 							Personnage p = it.next();
@@ -81,8 +103,8 @@ public class Serveurjeu extends Thread {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			}
-		}
-		}
+		}*/
+		
 		/* Tant que vrai { 
 			 * tant que ((le perso A ou que perso B n'a pas atteint la ligne d'arrivée) ou que (les deux sont morts)) {
 			 * parcourir tabJoueurs de serveur {
@@ -166,7 +188,15 @@ public class Serveurjeu extends Thread {
 				 * } else { out.println("Vous n'avez pas lancé la partie"); }
 				 
 				*/
-		}
-
 	
+	}
+	
+	public Personnage persServeur() {
+		return pers;
+	}
+	
+	public char lettrePers() {
+		return avatarRun;
+	}
+}	
 

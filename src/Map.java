@@ -41,7 +41,6 @@ public class Map {
 
 	// constructeur surchage pour multiplayer
 	public Map(Boolean multiplayer) {
-		//System.out.println("Informations :\nMonstre = M\nMur = #\nPiege = T\n\nVoici la carte ---->");
 		ligne = 12;
 		colonne = 12;
 		this.map = new char[ligne][colonne];
@@ -51,8 +50,6 @@ public class Map {
 				this.map[i][j] = 'X';
 			}
 		}
-		//affichage();
-		
 	}
 
 	public void casesPieges() {
@@ -74,7 +71,7 @@ public class Map {
 			System.out.print("[" + elem + "]");
 		}*/
 		int nbrpieges = trap.size();
-		System.out.println("Attention, " + nbrpieges + " pièges sont cachés dans le donjon...");
+		System.out.println("Attention, " + nbrpieges + " pièges sont cachés dans le donjon...\n");
 
 	}
 
@@ -94,6 +91,7 @@ public class Map {
 
 	// affichage
 	public void affichage() {
+		System.out.println("Voici la carte ---->");
 		for (int i = 0; i < ligne; i++) {
 			for (int j = 0; j < colonne; j++) {
 				System.out.print(" " + map[i][j]);
@@ -276,7 +274,7 @@ public class Map {
 
 		} else {
 			carte.affichage();
-			System.err.println("Vous n'avez pas saisi lettre valide");
+			System.err.println("Vous n'avez pas saisi une lettre valide");
 		}
 	}
 }

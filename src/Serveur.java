@@ -7,7 +7,7 @@ public class Serveur {
 	public static final int PORT = 6000;
 	private Vector tabJoueurs = new Vector();
 	// contiendra tous les flux de sortie vers les clients
-	//private ArrayList<Partie> nb_parties = new ArrayList<Partie>();;
+	private static ArrayList<Partie> nb_parties = new ArrayList<Partie>();;
 	private int nbJoueurs = 0;
 	private static int i = 0;
 
@@ -28,6 +28,7 @@ public class Serveur {
 			System.exit(1);
 		}
 
+		Partie tmp = new Partie(carte);
 		while (true) {
 
 			Socket socket;
@@ -35,15 +36,20 @@ public class Serveur {
 				socket = serverSocket.accept();
 				System.out.println("Un joueur s'est connecté");
 				
-				Serveurjeu newPlayer = new Serveurjeu(socket, carte, serveur);
+				Serveurjeu newPlayer = new Serveurjeu(socket,carte, serveur);
 				newPlayer.start();
+				tmp.addPlayer(newPlayer);
+				
+				if (tmp.ready()) {
+					tmp.start();
+					System.out.println("NOUVELLE PARTIE:  \n");
+					nb_parties.add(tmp);
+					carte = new Map(true);
+					tmp = new Partie(carte);
+				}
 			} catch (IOException e) {
 				System.err.println("Une erreur est arrivée lorsqu'un joueur a tenté de se connecter... ");
 				System.err.println(e);
-			}
-			i += 1;
-			if (i == 3) {
-				System.out.println("Le nombre maximum de joueur est atteint, la partie peut commencer !!!");
 			}
 		}
 
