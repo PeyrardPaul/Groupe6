@@ -3,11 +3,17 @@ import java.util.Iterator;
 
 public class Partie {
 	private Map map;
+	private Serveur serv;
+	private int i = 0;
+	private char[][] joueur;
 	private ArrayList<Serveurjeu> nb_joueurs = new ArrayList<Serveurjeu>();;
 	
 	public Partie (Map carte) {
 		map = carte;
-		map = new Map(true);
+		if (serv.getNb_parties().size() != 0) {
+			System.out.println("Nouvelle carte :");
+			map = new Map(true);
+		}
 		map.affichage();
 		map.casesPieges();
 	}
@@ -25,15 +31,22 @@ public class Partie {
 	}
 	
 	public void start() {
-		while (true) {
+		boolean b = true;
+		while (b) {
 			Iterator <Serveurjeu> it = nb_joueurs.iterator();
 			while (it.hasNext()) {
 				Serveurjeu pp = it.next();
 				System.out.println("Au tour de '"+pp.lettrePers()+"' de jouer");
 				pp.depla();
 				if (pp.persServeur().getPv() == 0) {
-					nb_joueurs.remove(pp);
+					System.out.println("Le joueur "+pp.lettrePers()+" est MORT !!!");
+					//nb_joueurs.remove(pp);
+					//pp.mortPerso();
 				}
+			}
+			if (nb_joueurs.size() == 0) {
+				System.out.println("Tout le monde est mort...");
+				b = false;
 			}
 		}
 	}

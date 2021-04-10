@@ -55,6 +55,14 @@ public class Serveur {
 
 	}
 
+	public static ArrayList<Partie> getNb_parties() {
+		return nb_parties;
+	}
+
+	public static void setNb_parties(ArrayList<Partie> nb_parties) {
+		Serveur.nb_parties = nb_parties;
+	}
+
 	synchronized public int addClient(PrintWriter out) {
 		nbJoueurs++; // un client en plus ! ouaaaih
 		tabJoueurs.addElement(out); // on ajoute le nouveau flux de sortie au tableau

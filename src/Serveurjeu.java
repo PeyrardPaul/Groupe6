@@ -65,7 +65,6 @@ public class Serveurjeu extends Thread {
 	}
 
 	public void depla() {
-		Client c = new Client();
 		String tmp = "";
 		try {
 			this.out.println(avatarRun);
@@ -193,6 +192,20 @@ public class Serveurjeu extends Thread {
 	
 	public Personnage persServeur() {
 		return pers;
+	}
+
+	public void mortPerso() {
+		//map = carte.getMap(carte.getLigne(), carte.getColonne());
+		map = new char[carte.getLigne()][carte.getColonne()];
+		for (int i = 0; i < carte.getLigne(); i++) {
+			for (int j = 0; j < carte.getColonne(); j++) {
+				if (map[i][j] == lettrePers()) { // PROBLEME: la boucle ne trouve pas le perso donc ne peut pas rentrer dans le if
+					System.out.println("le perso: -- "+lettrePers());
+					System.out.println("l'emplacement: -- "+map[i][j]);
+					map[i][j] = 'X';
+				}
+			}
+		}
 	}
 	
 	public char lettrePers() {

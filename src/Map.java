@@ -5,21 +5,21 @@ import java.util.Iterator;
 
 public class Map {
 	private int ligne;
-	private int colonne;
+	private int colonne ;
 	private char[][] map;
 	ArrayList<String> trap = new ArrayList<String>();
 	Random rand = new Random();
 	Scanner sc = new Scanner(System.in);
 	int min = 0;
-	int max = 11;
+	int max = 14;
 	int a = rand.nextInt(max - min) + min;
 	int b = rand.nextInt(max - min) + min;
 
 	// constructeur
 	public Map() { // Nous nous sommes aidés de cette vidéo--> https://youtu.be/QVXM9YeO7rw
 		System.out.println("Informations :\nMonstre = M\nMur = #\nPiege = T\n\nVoici la carte ---->");
-		ligne = 12;
-		colonne = 12;
+		 ligne = 15;
+		 colonne = 15;
 		map = new char[ligne][colonne];
 
 		for (int i = 0; i < ligne; i++) {
@@ -41,8 +41,8 @@ public class Map {
 
 	// constructeur surchage pour multiplayer
 	public Map(Boolean multiplayer) {
-		ligne = 12;
-		colonne = 12;
+		 ligne = 15;
+		 colonne = 15;
 		this.map = new char[ligne][colonne];
 
 		for (int i = 0; i < ligne; i++) {
@@ -52,10 +52,26 @@ public class Map {
 		}
 	}
 
+	public int getLigne() {
+		return ligne;
+	}
+
+	public void setLigne(int ligne) {
+		this.ligne = ligne;
+	}
+
+	public int getColonne() {
+		return colonne;
+	}
+
+	public void setColonne(int colonne) {
+		this.colonne = colonne;
+	}
+
 	public void casesPieges() {
 		int p = 1;
 
-		while (p <= 15) {
+		while (p <= 35) {
 			int alea = rand.nextInt(max - min) + min;
 			int aleadeux = rand.nextInt(max - min) + min;
 			if ((alea != a && aleadeux != b) && (alea != 1 && aleadeux != 1)) {
@@ -129,12 +145,12 @@ public class Map {
 		}
 	}
 
-	public char[][] getMap() {
-		return map;
+	public char getMap(int i, int j) {
+		return map[i][j];
 	}
 
-	public void setMap(char[][] map) {
-		this.map = map;
+	public void setMap(char[][] map, int i, int j) {
+		this.map[i][j] = 'X';
 	}
 
 	// la partie
@@ -193,11 +209,15 @@ public class Map {
 
 					// on test pour i et j si égal à 0 pour dire que le joueur est en dehors du
 					// terrain
-					if ((i + a) >= 0 && (j + b) >= 0 && (i + a) < 12 && (j + b) < 12) {
+					if ((i + a) >= 0 && (j + b) >= 0 && (i + a) < 15 && (j + b) < 15) {
 
 						pers = map[i][j];
-						map[i][j] = ' ';
-						map[i + a][j + b] = pers;
+						if ((map[i + a][j + b] != 'A') && (map[i + a][j + b] != 'B') && (map[i + a][j + b] != 'C') && (map[i + a][j + b] != 'D') && (map[i + a][j + b] != 'E') && (map[i + a][j + b] != 'F') && (map[i + a][j + b] != 'G') && (map[i + a][j + b] != 'H')) {
+							map[i][j] = ' ';
+							map[i + a][j + b] = pers;
+						} else {
+							System.err.println("Vous voulez vous déplacer sur un autre joueur");
+						}
 						String posJoueur = String.valueOf(i) + String.valueOf(j);
 
 						// perso sur piège ou pas 
