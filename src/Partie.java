@@ -32,6 +32,7 @@ public class Partie {
 	
 	public void start() {
 		boolean b = true;
+		char letter = 0;
 		while (b) {
 			Iterator <Serveurjeu> it = nb_joueurs.iterator();
 			while (it.hasNext()) {
@@ -43,11 +44,21 @@ public class Partie {
 					//nb_joueurs.remove(pp);
 					//pp.mortPerso();
 				}
+				if (pp.finJeu(map) == pp.lettrePers()) {
+					b= false;
+					letter = pp.lettrePers();
+				}
 			}
 			if (nb_joueurs.size() == 0) {
 				System.out.println("Tout le monde est mort...");
 				b = false;
 			}
 		}
+		System.out.println("Le joueur "+letter+" a trouvé la sortie du Donjon, "+letter+" a donc gagné !\n FIN DE LA PARTIE \n");
+		
+	}
+	
+	public boolean finClient(boolean b) {
+		return b;
 	}
 }

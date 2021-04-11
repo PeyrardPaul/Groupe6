@@ -13,6 +13,8 @@ public class Client {
     private Map carte;
     private int ident;
     static String tmp="";
+    static String tmp2 = "";
+    Scanner sc = new Scanner(System.in);
     private static int id = 1;//exo 4
     //private char mi;
     public Client() {
@@ -30,10 +32,7 @@ public class Client {
     }
     
     public void loop() {
-    	
-    	boolean b = true;
-    	Scanner sc = new Scanner(System.in);
-    	while (b) {
+    
     		try {
     			tmp = in.readLine();
     			System.out.println("Au joueur '"+tmp+"' de jouer :\n ------------");
@@ -46,11 +45,9 @@ public class Client {
     			String a = sc.next();
     			this.out.println(a);
     			
-    			//Si le perso est mort...
     		}catch(IOException e) {
     			e.printStackTrace();
     		}
-    	}
         /*int step=0;
         while(true) {     
         	try {
@@ -111,7 +108,10 @@ public class Client {
 
     public static void main(String argv[]) {
         Client c =new Client();
-        c.loop();
+        boolean b = true;
+    	while (b) {
+    		c.loop();
+        }
         /*try {     Pour la fois où chaque pers aura jouer et que tout les joueurs devront rejouer
         	tmp = in.readLine();
         	if (tmp.equals("Prochain tour")) {

@@ -71,9 +71,11 @@ public class Serveurjeu extends Thread {
 			this.out.flush();
 			tmp = in.readLine();
 			carte.saisieClavier(pers, carte, avatarRun, tmp);
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+			
 		// step=0 le joueur vient de se connecter il faut taper jeu pour lancer la
 		// partie,
 		// step=1 ajout de joueurs dans la partie,
@@ -208,6 +210,9 @@ public class Serveurjeu extends Thread {
 		}
 	}
 	
+	public char finJeu(Map carte) {
+		return carte.getMap()[1][1];
+	}
 	public char lettrePers() {
 		return avatarRun;
 	}
