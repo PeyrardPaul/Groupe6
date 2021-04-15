@@ -21,7 +21,7 @@ public class Serveurjeu extends Thread {
 	private Serveur serveur;
 	private int numJoueur = 0;
 	private static ArrayList<Personnage> joueurs = new ArrayList<Personnage>();;
-	private static char[] avatar = new char[] { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'};;
+	private static char[] avatar = new char[] { 'A', 'B', 'C', 'D'};;
 	char avatarRun = 'X';
 	
 
@@ -44,13 +44,13 @@ public class Serveurjeu extends Thread {
 			if (avatar[i] != 'X') {
 				myavatar = avatar[i];
 				this.avatar[i] = 'X';
-				/*if (myavatar == 'D') {
+				if (myavatar == 'D') {
 					avatar[0] = 'A';
 					avatar[1] = 'B';
 					avatar[2] = 'C';
 					avatar[3] = 'D';
-					i = 0;
-				}*/
+					i = -1;
+				}
 				break;
 			}i++;
 		}

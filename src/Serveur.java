@@ -1,6 +1,7 @@
 import java.io.*;
 import java.net.*;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Vector;
 
 public class Serveur {
@@ -9,6 +10,7 @@ public class Serveur {
 	// contiendra tous les flux de sortie vers les clients
 	private static ArrayList<Partie> nb_parties = new ArrayList<Partie>();;
 	private int nbJoueurs = 0;
+	private static ArrayList<Socket> nb_clients = new ArrayList<Socket>();;
 	private static int i = 0;
 
 	public static void main(String argv[]) throws UnknownHostException, IOException {
@@ -35,6 +37,7 @@ public class Serveur {
 			try {
 				socket = serverSocket.accept();
 				System.out.println("Un joueur s'est connecté");
+				nb_clients.add(socket);
 				
 				Serveurjeu newPlayer = new Serveurjeu(socket,carte, serveur);
 				newPlayer.start();
@@ -42,6 +45,13 @@ public class Serveur {
 				
 				if (tmp.ready()) {
 					tmp.start();
+					/*Iterator <Socket> it = nb_clients.iterator();
+					while (it.hasNext()) {
+						Socket sock = it.next();
+						sock.close();
+					}
+					nb_clients.clear();*/
+					
 					System.out.println("NOUVELLE PARTIE:  \n");
 					nb_parties.add(tmp);
 					carte = new Map(true);
