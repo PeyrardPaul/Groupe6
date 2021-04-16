@@ -166,26 +166,27 @@ public class Map {
 	// la partie
 	public void jeu(Personnage perso, Map carte, char personnageLetter) {
 
-		
 		while (true) {
 			System.out.println(perso);
 			// saisieClavier(perso, carte, personnageLetter);
 			if ((map[1][1] == personnageLetter) || (perso.getPv() == 0)) {
-		boolean b = true;
-		while (b) {
-			//carte.saisieClavier(perso, carte, personnageLetter);
-			if ((carte.getMap()[1][1] == personnageLetter) || (perso.getPv() == 0)) {
-				if (perso.getPv() == 0) {
-					System.out.println("VOUS ETES MORT !!!");
-					break;
+				boolean b = true;
+				while (b) {
+					// carte.saisieClavier(perso, carte, personnageLetter);
+					if ((carte.getMap()[1][1] == personnageLetter) || (perso.getPv() == 0)) {
+						if (perso.getPv() == 0) {
+							System.out.println("VOUS ETES MORT !!!");
+							break;
+						}
+						if (getMap()[1][1] == personnageLetter) {
+							System.out.println("Vous avez réussi à sortir du Donjon !\nVICTOIRE!!!");
+							break;
+						}
+						b = false;
+					}
 				}
-				if (getMap()[1][1] == personnageLetter) {
-					System.out.println("Vous avez réussi à sortir du Donjon !\nVICTOIRE!!!");
-					break;
-				}
-				b = false;
 			}
-		}}}
+		}
 	}
 
 	public void multiPlayer() {
