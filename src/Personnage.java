@@ -10,7 +10,7 @@ public class Personnage {
 
 	// Constructeur
 	public Personnage() {
-		pv = 20;
+		pv = 10;
 		potion = 1;
 		System.out.println("Veuillez entrer votre nom : ");
 		name = scp.next();
@@ -18,7 +18,7 @@ public class Personnage {
 
 	// Constructeur multijoueur
 	public Personnage(char avatar) {
-		pv = 20;
+		pv = 10;
 		potion = 1;
 		this.setAvatar(avatar);
 	}
@@ -55,11 +55,11 @@ public class Personnage {
 	}
 
 	public void potion() {
-		if (potion > 0 && pv < 20) {
-			if (pv >= 17) {
+		if (potion > 0 && pv < 10) {
+			if (pv >= 7) {
 				potion -= 1;
-				System.out.println("Vous utilisez une potion : +" + (20 - pv) + " PV");
-				pv += (20 - pv);
+				System.out.println("Vous utilisez une potion : +" + (10 - pv) + " PV");
+				pv += (10 - pv);
 				System.out.println("Vous avez maintenant " + pv + "PV");
 				System.out.println("Il vous reste "+potion+" potion(s)");
 			} else {
@@ -68,7 +68,7 @@ public class Personnage {
 				pv += 4;
 				System.out.println("Vous avez maintenant " + pv + "PV");
 			}
-		} else if (pv == 20) {
+		} else if (pv == 10) {
 			System.out.println("Vous avez déjà le maximum de PV");
 		} else {
 			System.out.println("Vous n'avez pas de potion...");

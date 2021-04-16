@@ -31,6 +31,7 @@ public class Partie {
 	}
 	
 	public void start() {
+		boolean a = true;
 		boolean b = true;
 		char letter = 0;
 		while (b) {
@@ -41,21 +42,31 @@ public class Partie {
 				pp.depla();
 				if (pp.persServeur().getPv() == 0) {
 					System.out.println("Le joueur "+pp.lettrePers()+" est MORT !!!");
-					//nb_joueurs.remove(pp);
-					//pp.mortPerso();
+					it.remove();
 				}
 				if (pp.finJeu(map) == pp.lettrePers()) {
 					b= false;
+					a = false;
 					letter = pp.lettrePers();
 				}
 			}
+			if (nb_joueurs.size() == 1) {
+				Iterator <Serveurjeu> i = nb_joueurs.iterator();
+				while (i.hasNext()) {
+					Serveurjeu p = i.next();
+					System.out.println("Il ne reste plus qu'un survivant ...\nLe joueur "+p.lettrePers()+" a donc gagné !\nFIN DE LA PARTIE \n");
+					b = false; 
+				}
+			}
+			
 			if (nb_joueurs.size() == 0) {
-				System.out.println("Tout le monde est mort...");
+				System.out.println("Tout le monde est mort...\nFIN DE LA PARTIE");
 				b = false;
 			}
 		}
-		System.out.println("Le joueur "+letter+" a trouvé la sortie du Donjon, "+letter+" a donc gagné !\nFIN DE LA PARTIE \n");
-		
+		if (a == false) {
+			System.out.println("Le joueur "+letter+" a trouvé la sortie du Donjon, "+letter+" a donc gagné !\nFIN DE LA PARTIE \n");
+		}
 	}
 
 	public boolean finClient(boolean b) {

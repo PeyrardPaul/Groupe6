@@ -81,7 +81,7 @@ public class Map {
 	public void casesPieges() {
 		int p = 1;
 
-		while (p <= 35) {
+		while (p <= 55) {
 			int alea = rand.nextInt(max - min) + min;
 			int aleadeux = rand.nextInt(max - min) + min;
 			if ((alea != a && aleadeux != b) && (alea != 1 && aleadeux != 1)) {
