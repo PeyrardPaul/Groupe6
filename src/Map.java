@@ -11,29 +11,29 @@ public class Map {
 	Random rand = new Random();
 	Scanner sc = new Scanner(System.in);
 	int min = 0;
-	int max = 11;
+	int max = 14;
 	int a = rand.nextInt(max - min) + min;
 	int b = rand.nextInt(max - min) + min;
 
 	// constructeur
 	public Map() { // Nous nous sommes aidés de cette vidéo--> https://youtu.be/QVXM9YeO7rw
 		System.out.println("Informations :\nMonstre = M\nMur = #\nPiege = T\n\nVoici la carte ---->");
-		ligne = 12;
-		colonne = 12;
-		map = new char[ligne][colonne];
+		ligne = 15;
+		colonne = 15;
+		setMap(new char[ligne][colonne]);
 
 		for (int i = 0; i < ligne; i++) {
 			for (int j = 0; j < colonne; j++) {
-				map[i][j] = 'X';
+				getMap()[i][j] = 'X';
 			}
 		}
 
-		map[a][b] = 'O';
+		getMap()[a][b] = 'O';
 		while (a == 1 && b == 1) {
-			map[a][b] = 'X';
+			getMap()[a][b] = 'X';
 			a = rand.nextInt(max - min) + min;
 			b = rand.nextInt(max - min) + min;
-			map[a][b] = 'O';
+			getMap()[a][b] = 'O';
 		}
 		affichage();
 		casesPieges();
@@ -41,25 +41,47 @@ public class Map {
 
 	// constructeur surchage pour multiplayer
 	public Map(Boolean multiplayer) {
+
 		// System.out.println("Informations :\nMonstre = M\nMur = #\nPiege = T\n\nVoici
 		// la carte ---->");
 		ligne = 12;
 		colonne = 12;
 		this.map = new char[ligne][colonne];
 
+		ligne = 15;
+		colonne = 15;
+		this.setMap(new char[ligne][colonne]);
+
 		for (int i = 0; i < ligne; i++) {
 			for (int j = 0; j < colonne; j++) {
-				this.map[i][j] = 'X';
+				this.getMap()[i][j] = 'X';
 			}
 		}
 		// affichage();
 
 	}
 
+	public int getLigne() {
+		return ligne;
+	}
+
+	public void setLigne(int ligne) {
+		this.ligne = ligne;
+	}
+
+	public int getColonne() {
+		return colonne;
+	}
+
+	public void setColonne(int colonne) {
+		this.colonne = colonne;
+
+	}
+
 	public void casesPieges() {
 		int p = 1;
 
-		while (p <= 15) {
+		while (p <= 35) {
 			int alea = rand.nextInt(max - min) + min;
 			int aleadeux = rand.nextInt(max - min) + min;
 			if ((alea != a && aleadeux != b) && (alea != 1 && aleadeux != 1)) {
@@ -75,7 +97,7 @@ public class Map {
 		 * for (String elem : trap) { System.out.print("[" + elem + "]"); }
 		 */
 		int nbrpieges = trap.size();
-		System.out.println("Attention, " + nbrpieges + " pièges sont cachés dans le donjon...");
+		System.out.println("Attention, " + nbrpieges + " pièges sont cachés dans le donjon...\n");
 
 	}
 
@@ -83,22 +105,30 @@ public class Map {
 		while (true) {
 			a = rand.nextInt(max - min) + min;
 			b = rand.nextInt(max - min) + min;
+
 			System.out.println("Ajout du personnage " + personnageLetter + ":");
 
 			if (this.map[a][b] == 'X') {
 				this.map[a][b] = personnageLetter;
-				break;
-			}
 
+				System.out.println("Ajout du personnage " + personnageLetter + ":");
+				if (this.getMap()[a][b] == 'X') {
+					this.getMap()[a][b] = personnageLetter;
+
+					break;
+				}
+
+			}
 		}
 
 	}
 
 	// affichage
 	public void affichage() {
+		System.out.println("Voici la carte ---->");
 		for (int i = 0; i < ligne; i++) {
 			for (int j = 0; j < colonne; j++) {
-				System.out.print(" " + map[i][j]);
+				System.out.print(" " + getMap()[i][j]);
 			}
 			System.out.println(" ");
 		}
@@ -108,7 +138,7 @@ public class Map {
 		String t = "";
 		for (int i = 0; i < ligne; i++) {
 			for (int j = 0; j < colonne; j++) {
-				t = t + " " + this.map[i][j];
+				t = t + " " + this.getMap()[i][j];
 			}
 			t = t + "\n";
 		}
@@ -124,8 +154,8 @@ public class Map {
 			throw new ArrayIndexOutOfBoundsException(
 					"Attention, vous essayez de mettre un objet en dehors de la carte");
 		} else {
-			if (map[a][b] == 'X' || map[a][b] == ' ') {
-				map[a][b] = c;
+			if (getMap()[a][b] == 'X' || getMap()[a][b] == ' ') {
+				getMap()[a][b] = c;
 			} else {
 				System.out.println("Attention, l'emplacement est déjà pris à la " + (a + 1) + " ème ligne et la "
 						+ (b + 1) + " ème colonne");
@@ -133,29 +163,33 @@ public class Map {
 		}
 	}
 
-	
 	// la partie
 	public void jeu(Personnage perso, Map carte, char personnageLetter) {
-		boolean b;
+
+		
 		while (true) {
 			System.out.println(perso);
 			// saisieClavier(perso, carte, personnageLetter);
 			if ((map[1][1] == personnageLetter) || (perso.getPv() == 0)) {
+		boolean b = true;
+		while (b) {
+			//carte.saisieClavier(perso, carte, personnageLetter);
+			if ((carte.getMap()[1][1] == personnageLetter) || (perso.getPv() == 0)) {
 				if (perso.getPv() == 0) {
 					System.out.println("VOUS ETES MORT !!!");
 					break;
 				}
-				if (map[1][1] == personnageLetter) {
+				if (getMap()[1][1] == personnageLetter) {
 					System.out.println("Vous avez réussi à sortir du Donjon !\nVICTOIRE!!!");
 					break;
 				}
 				b = false;
 			}
-		}
+		}}}
 	}
 
 	public void multiPlayer() {
-		System.out.println(map);
+		System.out.println(getMap());
 	}
 
 	/*
@@ -186,16 +220,23 @@ public class Map {
 		boolean positionPersoTrouver = false;
 		for (int i = 0; i < ligne; i++) {
 			for (int j = 0; j < colonne; j++) {
-				if (map[i][j] == personnageLetter) {
+				if (getMap()[i][j] == personnageLetter) {
 					positionPersoTrouver = true;
 
 					// on test pour i et j si égal à 0 pour dire que le joueur est en dehors du
 					// terrain
-					if ((i + a) >= 0 && (j + b) >= 0 && (i + a) < 12 && (j + b) < 12) {
+					if ((i + a) >= 0 && (j + b) >= 0 && (i + a) < 15 && (j + b) < 15) {
 
-						pers = map[i][j];
-						map[i][j] = ' ';
-						map[i + a][j + b] = pers;
+						pers = getMap()[i][j];
+						if ((getMap()[i + a][j + b] != 'A') && (getMap()[i + a][j + b] != 'B')
+								&& (getMap()[i + a][j + b] != 'C') && (getMap()[i + a][j + b] != 'D')
+								&& (getMap()[i + a][j + b] != 'E') && (getMap()[i + a][j + b] != 'F')
+								&& (getMap()[i + a][j + b] != 'G') && (getMap()[i + a][j + b] != 'H')) {
+							getMap()[i][j] = ' ';
+							getMap()[i + a][j + b] = pers;
+						} else {
+							System.err.println("Vous voulez vous déplacer sur un autre joueur");
+						}
 						String posJoueur = String.valueOf(i) + String.valueOf(j);
 
 						// perso sur piège ou pas
@@ -244,6 +285,7 @@ public class Map {
 	}
 
 	public void saisieClavier(Personnage perso, Map carte, char personnageLetter, String a) {
+
 		/*
 		 * System.out.println("Dans quelle direction voulez vous aller?");
 		 * System.out.println("z = vers le haut");
@@ -252,6 +294,16 @@ public class Map {
 		 * System.out.println("d = vers la droite");
 		 * System.out.println("e = prendre une potion");
 		 */
+
+		/*
+		 * System.out.println("Dans quelle direction voulez vous aller?");
+		 * System.out.println("z = vers le haut");
+		 * System.out.println("s = vers le bas");
+		 * System.out.println("q = vers la gauche");
+		 * System.out.println("d = vers la droite");
+		 * System.out.println("e = prendre une potion");
+		 */
+
 		if (a.equals("z")) {
 			// deplacement vers le haut
 			deplacer(perso, carte, -1, 0, personnageLetter);
@@ -274,7 +326,17 @@ public class Map {
 
 		} else {
 			carte.affichage();
+
 			System.err.println("Vous n'avez pas saisi de lettre valide");
+
 		}
+	}
+
+	public char[][] getMap() {
+		return map;
+	}
+
+	public void setMap(char[][] map) {
+		this.map = map;
 	}
 }

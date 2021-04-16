@@ -61,6 +61,7 @@ public class Personnage {
 				System.out.println("Vous utilisez une potion : +" + (20 - pv) + " PV");
 				pv += (20 - pv);
 				System.out.println("Vous avez maintenant " + pv + "PV");
+				System.out.println("Il vous reste "+potion+" potion(s)");
 			} else {
 				potion -= 1;
 				System.out.println("Vous utilisez une potion : +4 PV");

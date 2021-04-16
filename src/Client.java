@@ -8,11 +8,13 @@ import java.util.Scanner;
 
 public class Client {
     private PrintStream out = null;
-    private BufferedReader in =null;
+    private static BufferedReader in =null;
     private Socket socket;
     private Map carte;
     private int ident;
-    String tmp="";
+    static String tmp="";
+    static String tmp2 = "";
+    Scanner sc = new Scanner(System.in);
     private static int id = 1;//exo 4
     //private char mi;
     public Client() {
@@ -25,34 +27,27 @@ public class Client {
             e.printStackTrace();
         }
         id++;
-        try {
-			tmp = in.readLine();
-			System.out.println("Vous êtes le joueur "+tmp);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
         // ATTENTION: Je veux changer d' ID à chaque fois que l'on crée un client pour pas que tout les clients aient les mêmes ID
         //Donc à chaque fois j'ajoute au dernier chiffre de l'id +1 (127.0.etc..), mais ça ne marche pas et le petit id reste égal à 1
     }
     
     public void loop() {
-        Scanner sc = new Scanner(System.in);
-       try {
-    	   tmp = in.readLine();
-    	   System.out.println("Au joueur '"+tmp+"' de jouer :\n ------------");
-    	   System.out.println("Dans quelle direction voulez vous aller?");
-    	   System.out.println("z = vers le haut");
-    	   System.out.println("s = vers le bas");
-    	   System.out.println("q = vers la gauche");
-    	   System.out.println("d = vers la droite");
-    	   System.out.println("e = prendre une potion");
-    	   String a = sc.next();
-    	   this.out.println(a);
-       }catch(IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+    
+    		try {
+    			tmp = in.readLine();
+    			System.out.println("Au joueur '"+tmp+"' de jouer :\n ------------");
+    			System.out.println("Dans quelle direction voulez vous aller?");
+    			System.out.println("z = vers le haut");
+    			System.out.println("s = vers le bas");
+    			System.out.println("q = vers la gauche");
+    			System.out.println("d = vers la droite");
+    			System.out.println("e = prendre une potion");
+    			String a = sc.next();
+    			this.out.println(a);
+    			
+    		}catch(IOException e) {
+    			e.printStackTrace();
+    		}
         /*int step=0;
         while(true) {     
         	try {
@@ -113,6 +108,17 @@ public class Client {
 
     public static void main(String argv[]) {
         Client c =new Client();
-        c.loop();
+        boolean b = true;
+    	while (b) {
+    		c.loop();
+        }
+        /*try {     Pour la fois où chaque pers aura jouer et que tout les joueurs devront rejouer
+        	tmp = in.readLine();
+        	if (tmp.equals("Prochain tour")) {
+        		c.loop();
+        	}
+        }catch (IOException e) {
+    	e.printStackTrace();
+        }*/
     }
 }

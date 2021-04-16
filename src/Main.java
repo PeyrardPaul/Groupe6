@@ -8,6 +8,10 @@ public class Main {
 		 * System.out.print(aleap+"  "); p+=1; } }
 		 */
 		Map map = new Map();
+<<<<<<< HEAD
+=======
+		//System.out.println(map.getMap());
+>>>>>>> refs/remotes/origin/main
 		Personnage perso = new Personnage();
 		// map.casesPieges(perso,map);
 		// map.deplacerMultiple(perso, map, 3);
