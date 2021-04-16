@@ -54,10 +54,10 @@ public class Partie {
 				b = false;
 			}
 		}
-		System.out.println("Le joueur "+letter+" a trouvé la sortie du Donjon, "+letter+" a donc gagné !\n FIN DE LA PARTIE \n");
+		System.out.println("Le joueur "+letter+" a trouvé la sortie du Donjon, "+letter+" a donc gagné !\nFIN DE LA PARTIE \n");
 		
 	}
-	
+
 	public boolean finClient(boolean b) {
 		return b;
 	}
