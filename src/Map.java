@@ -110,17 +110,9 @@ public class Map {
 
 			if (this.map[a][b] == 'X') {
 				this.map[a][b] = personnageLetter;
-
-				System.out.println("Ajout du personnage " + personnageLetter + ":");
-				if (this.getMap()[a][b] == 'X') {
-					this.getMap()[a][b] = personnageLetter;
-
-					break;
-				}
-
+				break;
 			}
 		}
-
 	}
 
 	// affichage

@@ -32,7 +32,8 @@ public class Client {
     }
     
     public void loop() {
-    
+    	boolean b = true;
+    	while (b) {
     		try {
     			tmp = in.readLine();
     			System.out.println("Au joueur '"+tmp+"' de jouer :\n ------------");
@@ -48,6 +49,7 @@ public class Client {
     		}catch(IOException e) {
     			e.printStackTrace();
     		}
+    	}
         /*int step=0;
         while(true) {     
         	try {
@@ -108,10 +110,7 @@ public class Client {
 
     public static void main(String argv[]) {
         Client c =new Client();
-        boolean b = true;
-    	while (b) {
     		c.loop();
-        }
         /*try {     Pour la fois où chaque pers aura jouer et que tout les joueurs devront rejouer
         	tmp = in.readLine();
         	if (tmp.equals("Prochain tour")) {

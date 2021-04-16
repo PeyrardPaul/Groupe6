@@ -196,7 +196,7 @@ public class Serveurjeu extends Thread {
 		return pers;
 	}
 
-	public void mortPerso() {
+	/*public void mortPerso() {
 		//map = carte.getMap(carte.getLigne(), carte.getColonne());
 		map = new char[carte.getLigne()][carte.getColonne()];
 		for (int i = 0; i < carte.getLigne(); i++) {
@@ -208,7 +208,7 @@ public class Serveurjeu extends Thread {
 				}
 			}
 		}
-	}
+	}*/
 	
 	public char finJeu(Map carte) {
 		return carte.getMap()[1][1];
