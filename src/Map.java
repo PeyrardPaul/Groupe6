@@ -41,7 +41,8 @@ public class Map {
 
 	// constructeur surchage pour multiplayer
 	public Map(Boolean multiplayer) {
-		//System.out.println("Informations :\nMonstre = M\nMur = #\nPiege = T\n\nVoici la carte ---->");
+		// System.out.println("Informations :\nMonstre = M\nMur = #\nPiege = T\n\nVoici
+		// la carte ---->");
 		ligne = 12;
 		colonne = 12;
 		this.map = new char[ligne][colonne];
@@ -51,8 +52,8 @@ public class Map {
 				this.map[i][j] = 'X';
 			}
 		}
-		//affichage();
-		
+		// affichage();
+
 	}
 
 	public void casesPieges() {
@@ -70,9 +71,9 @@ public class Map {
 			}
 		}
 		// penser à retirer ce for ?????
-		/*for (String elem : trap) {
-			System.out.print("[" + elem + "]");
-		}*/
+		/*
+		 * for (String elem : trap) { System.out.print("[" + elem + "]"); }
+		 */
 		int nbrpieges = trap.size();
 		System.out.println("Attention, " + nbrpieges + " pièges sont cachés dans le donjon...");
 
@@ -82,7 +83,8 @@ public class Map {
 		while (true) {
 			a = rand.nextInt(max - min) + min;
 			b = rand.nextInt(max - min) + min;
-			System.out.println("Ajout du personnage "+personnageLetter+":");
+			System.out.println("Ajout du personnage " + personnageLetter + ":");
+
 			if (this.map[a][b] == 'X') {
 				this.map[a][b] = personnageLetter;
 				break;
@@ -131,20 +133,13 @@ public class Map {
 		}
 	}
 
-	public char[][] getMap() {
-		return map;
-	}
-
-	public void setMap(char[][] map) {
-		this.map = map;
-	}
-
+	
 	// la partie
 	public void jeu(Personnage perso, Map carte, char personnageLetter) {
 		boolean b;
 		while (true) {
 			System.out.println(perso);
-			//saisieClavier(perso, carte, personnageLetter);
+			// saisieClavier(perso, carte, personnageLetter);
 			if ((map[1][1] == personnageLetter) || (perso.getPv() == 0)) {
 				if (perso.getPv() == 0) {
 					System.out.println("VOUS ETES MORT !!!");
@@ -181,7 +176,8 @@ public class Map {
 	 */
 
 	// On va utiliser une seule fonction pour le deplacement, on ajoute les
-	// arguments de la foncton a et b, a pour l'axe vertical, et b pour l'axe horizontal
+	// arguments de la foncton a et b, a pour l'axe vertical, et b pour l'axe
+	// horizontal
 
 	public void deplacer(Personnage perso, Map carte, int a, int b, char personnageLetter) {
 		char pers;
@@ -202,7 +198,7 @@ public class Map {
 						map[i + a][j + b] = pers;
 						String posJoueur = String.valueOf(i) + String.valueOf(j);
 
-						// perso sur piège ou pas 
+						// perso sur piège ou pas
 
 						Iterator<String> it = trap.iterator();
 
@@ -248,12 +244,14 @@ public class Map {
 	}
 
 	public void saisieClavier(Personnage perso, Map carte, char personnageLetter, String a) {
-		/*System.out.println("Dans quelle direction voulez vous aller?");
-		System.out.println("z = vers le haut");
-		System.out.println("s = vers le bas");
-		System.out.println("q = vers la gauche");
-		System.out.println("d = vers la droite");
-		System.out.println("e = prendre une potion");*/
+		/*
+		 * System.out.println("Dans quelle direction voulez vous aller?");
+		 * System.out.println("z = vers le haut");
+		 * System.out.println("s = vers le bas");
+		 * System.out.println("q = vers la gauche");
+		 * System.out.println("d = vers la droite");
+		 * System.out.println("e = prendre une potion");
+		 */
 		if (a.equals("z")) {
 			// deplacement vers le haut
 			deplacer(perso, carte, -1, 0, personnageLetter);
@@ -276,7 +274,7 @@ public class Map {
 
 		} else {
 			carte.affichage();
-			System.err.println("Vous n'avez pas saisi lettre valide");
+			System.err.println("Vous n'avez pas saisi de lettre valide");
 		}
 	}
 }
