@@ -8,6 +8,7 @@ public class Map {
 	private int colonne;
 	private char[][] map;
 	ArrayList<String> trap = new ArrayList<String>();
+	ArrayList<String> potion = new ArrayList<String>();
 	Random rand = new Random();
 	Scanner sc = new Scanner(System.in);
 	int min = 0;
@@ -37,6 +38,7 @@ public class Map {
 		}
 		affichage();
 		casesPieges();
+		casesPotion();
 	}
 
 	// constructeur surchage pour multiplayer
@@ -77,7 +79,27 @@ public class Map {
 		this.colonne = colonne;
 
 	}
+	public void casesPotion() {
+		int p = 1;
 
+		while (p <= 20) {
+			int alea = rand.nextInt(max - min) + min;
+			int aleadeux = rand.nextInt(max - min) + min;
+			if ((alea != a && aleadeux != b) && (alea != 1 && aleadeux != 1)) {
+				p += 1;
+				String.valueOf(alea);
+				String.valueOf(aleadeux);
+				String posPotion = String.valueOf(alea) + String.valueOf(aleadeux);
+				potion.add(posPotion);
+			}
+		}
+		
+		int nbrpotions = potion.size();
+		System.out.println(potion);
+		System.out.println(nbrpotions + " potions sont disponibles pour soigner vos blessures...\n");
+
+	}
+	
 	public void casesPieges() {
 		int p = 1;
 

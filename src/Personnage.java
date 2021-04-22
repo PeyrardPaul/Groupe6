@@ -43,6 +43,10 @@ public class Personnage {
 	public int getPotion() {
 		return potion;
 	}
+	
+	public void remplirInventaire() {
+		int inventaire = getPotion()+1;
+	}
 
 	public void setPotion(int po) {
 		System.out.println("Vous avez trouvé " + po + " potion(s) !");
