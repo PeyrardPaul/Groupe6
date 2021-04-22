@@ -159,8 +159,7 @@ public class Map {
 	public void jeu(Personnage perso, Map carte, char personnageLetter) {
 
 		while (true) {
-			System.out.println(perso);
-			// saisieClavier(perso, carte, personnageLetter);
+			saisieClavierSolo(perso, carte, personnageLetter);
 			if ((map[1][1] == personnageLetter) || (perso.getPv() == 0)) {
 				boolean b = true;
 				while (b) {
@@ -277,7 +276,7 @@ public class Map {
 		}
 	}
 
-	public void saisieClavier(Personnage perso, Map carte, char personnageLetter, String a) {
+	public void saisieClavierMulti(Personnage perso, Map carte, char personnageLetter, String a) {
 
 		/*
 		 * System.out.println("Dans quelle direction voulez vous aller?");
@@ -331,5 +330,44 @@ public class Map {
 
 	public void setMap(char[][] map) {
 		this.map = map;
+	}
+
+	public void saisieClavierSolo(Personnage perso, Map carte, char personnageLetter) {
+
+		
+		 System.out.println("Dans quelle direction voulez vous aller?");
+		 System.out.println("z = vers le haut");
+		 System.out.println("s = vers le bas");
+		 System.out.println("q = vers la gauche");
+		 System.out.println("d = vers la droite");
+		 System.out.println("e = prendre une potion");
+		
+		 String a = sc.next();
+		if (a.equals("z")) {
+			// deplacement vers le haut
+			deplacer(perso, carte, -1, 0, personnageLetter);
+			carte.affichage();
+		} else if (a.equals("q")) {
+			// deplacement gauche
+			deplacer(perso, carte, 0, -1, personnageLetter);
+			carte.affichage();
+		} else if (a.equals("s")) {
+			// deplacement bas
+			deplacer(perso, carte, +1, 0, personnageLetter);
+			carte.affichage();
+		} else if (a.equals("d")) {
+			// deplacement droite
+			deplacer(perso, carte, 0, 1, personnageLetter);
+			carte.affichage();
+		} else if (a.equals("e")) {
+			perso.potion();
+			carte.affichage();
+
+		} else {
+			carte.affichage();
+
+			System.err.println("Vous n'avez pas saisi de lettre valide");
+
+		}
 	}
 }

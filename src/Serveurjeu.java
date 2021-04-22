@@ -70,7 +70,7 @@ public class Serveurjeu extends Thread {
 			this.out.println(avatarRun);
 			this.out.flush();
 			tmp = in.readLine();
-			carte.saisieClavier(pers, carte, avatarRun, tmp);
+			carte.saisieClavierMulti(pers, carte, avatarRun, tmp);
 			
 		} catch (IOException e) {
 			e.printStackTrace();
