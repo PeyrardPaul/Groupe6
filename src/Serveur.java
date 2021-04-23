@@ -4,6 +4,14 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Vector;
 
+/*GROUPE 6 ------>
+Lien vers projet Github: https://github.com/PeyrardPaul/Groupe6.git
+NOM, PRENOM, NUMERO ETUDIANT: 
+- AIT KADDOUR, NOUR, 21904388
+- PEYRARD, PAUL, 21905475
+- ABDALLAH, RACHYDAH, 
+- BELKHI, MEHDI,
+*/ 
 public class Serveur {
 	public static final int PORT = 6000;
 	// contiendra tous les flux de sortie vers les clients
