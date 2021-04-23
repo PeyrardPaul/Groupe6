@@ -4,8 +4,6 @@ import java.util.Iterator;
 public class Partie {
 	private Map map;
 	private Serveur serv;
-	private int i = 0;
-	private char[][] joueur;
 	private ArrayList<Serveurjeu> nb_joueurs = new ArrayList<Serveurjeu>();;
 	
 	public Partie (Map carte) {
@@ -16,6 +14,7 @@ public class Partie {
 		}
 		map.affichage();
 		map.casesPieges();
+		map.casesPotion();
 	}
 	
 	public void addPlayer(Serveurjeu joueur) {

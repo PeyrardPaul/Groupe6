@@ -59,8 +59,6 @@ public class Map {
 				this.getMap()[i][j] = 'X';
 			}
 		}
-		// affichage();
-
 	}
 
 	public int getLigne() {
@@ -95,7 +93,6 @@ public class Map {
 		}
 		
 		int nbrpotions = potion.size();
-		System.out.println(potion);
 		System.out.println(nbrpotions + " potions sont disponibles pour soigner vos blessures...\n");
 
 	}
@@ -114,12 +111,8 @@ public class Map {
 				trap.add(posTrap);
 			}
 		}
-		System.out.println(trap);
-		/*
-		 * for (String elem : trap) { System.out.print("[" + elem + "]"); }
-		 */
 		int nbrpieges = trap.size();
-		System.out.println("Attention, " + nbrpieges + " pièges sont cachés dans le donjon...\n");
+		System.out.println("Attention, " + nbrpieges + " pièges sont cachés dans le donjon...");
 
 	}
 
@@ -264,6 +257,25 @@ public class Map {
 								z = false;
 								it.remove();
 								perso.piege();
+							}
+							/*
+							 * int lastItem = trap.size()-1; if(nxt.equals(lastItem)) {
+							 * 
+							 * if(false) { y = false; }
+							 */
+						}
+						
+						boolean z2 = true;
+						String nxt2;
+						Iterator<String> it2 = potion.iterator();
+						while (it2.hasNext() && z2) {
+
+							nxt2 = it2.next();
+
+							if (posJoueur.equals(nxt2)) {
+								z2 = false;
+								it2.remove();
+								perso.remplirInventaire();
 							}
 							/*
 							 * int lastItem = trap.size()-1; if(nxt.equals(lastItem)) {
