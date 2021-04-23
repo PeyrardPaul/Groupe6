@@ -114,7 +114,7 @@ public class Map {
 				trap.add(posTrap);
 			}
 		}
-		
+		System.out.println(trap);
 		/*
 		 * for (String elem : trap) { System.out.print("[" + elem + "]"); }
 		 */

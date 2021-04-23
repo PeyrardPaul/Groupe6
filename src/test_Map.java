@@ -38,14 +38,14 @@ public class test_Map {
 		while (p <= 55) {
 			int alea = rand.nextInt(max - min) + min;
 			int aleadeux = rand.nextInt(max - min) + min;
-			if ((alea != a && aleadeux != b) && (alea != 1 && aleadeux != 1) && (alea != 0 && aleadeux != 0)) {
+			if ((alea != a && aleadeux != b) && (alea != 1 && aleadeux != 1) && (alea != 0 || aleadeux != 0)) {
 				p += 1;
 				String.valueOf(alea);
 				String.valueOf(aleadeux);
 				String posTrap = String.valueOf(alea) + String.valueOf(aleadeux);
 				trap.add(posTrap);
 			}
-			 System.out.println(trap+"test");
+
 			
 		}
 		
@@ -58,7 +58,7 @@ public class test_Map {
 		while (p <= 20) {
 			int alea = rand.nextInt(max - min) + min;
 			int aleadeux = rand.nextInt(max - min) + min;
-			if ((alea != a && aleadeux != b) && (alea != 1 && aleadeux != 1)&& (alea != 0 && aleadeux != 0)) {
+			if ((alea != a && aleadeux != b) && (alea != 1 && aleadeux != 1)&& (alea != 0 || aleadeux != 0)) {
 				p += 1;
 				String.valueOf(alea);
 				String.valueOf(aleadeux);
