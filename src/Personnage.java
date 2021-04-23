@@ -43,16 +43,16 @@ public class Personnage {
 	public int getPotion() {
 		return potion;
 	}
-	
-	public void remplirInventaire() {
-		int inventaire = getPotion()+1;
-	}
-
+	 
 	public void setPotion(int po) {
 		System.out.println("Vous avez trouvé " + po + " potion(s) !");
 		potion += po;
 	}
 	// methodes
+	
+	public void remplirInventaire() {
+		int inventaire = getPotion()+1;
+	}
 
 	public String toString() {
 		return "Vos caractéristiques :\nNombre de PV: " + pv + "\nNombre de potion: " + potion +  " et votre nom: "+getAvatar()+"\n----------------";
