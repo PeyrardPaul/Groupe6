@@ -51,7 +51,9 @@ public class Personnage {
 	// methodes
 	
 	public void remplirInventaire() {
-		int inventaire = getPotion()+1;
+
+		potion = potion+1;
+		 
 	}
 
 	public String toString() {
