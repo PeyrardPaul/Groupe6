@@ -114,7 +114,7 @@ public class Map {
 				trap.add(posTrap);
 			}
 		}
-		// penser à retirer ce for ?????
+		
 		/*
 		 * for (String elem : trap) { System.out.print("[" + elem + "]"); }
 		 */
